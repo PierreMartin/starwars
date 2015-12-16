@@ -26,7 +26,7 @@ class Product extends Model
 
     // RELATION Products <-> image :
     public function image() {
-        return $this->hasMany('App\Image');
+        return $this->belongsTo('App\Image');
     }
 
     // RELATION Products <-> Customer : // belongsToMany

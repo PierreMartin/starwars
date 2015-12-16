@@ -13,8 +13,8 @@ class Category extends Model
      */
     protected $fillable = ['title', 'description'];
 
-    // RELATION Posts <-> Category  :
-    public function posts()
+    // RELATION Products <-> Category  :
+    public function products()
     {
         return $this->hasMany('App\Post');
     }

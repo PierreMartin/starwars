@@ -32,13 +32,23 @@ $ php artisan make:seeder CategoryTableSeeder
 $ php artisan make:seeder CustomerTableSeeder
 $ php artisan make:seeder OrderTableSeeder
 
+$ php artisan migrate:refresh --seed
 $ php artisan db:seed
+
+
+//////////////////////////////// MODELES ////////////////////////////////
+belongsTo       = N..1
+hasMany         = 1..N
+belongsToMany   = N..N
 
 ->  associer les 3 tables pivots via tinker - tinker (écrire les relations dans les modeles avant) :
     $ $products = App\Product::find(1);
     $ $products->tags()->sync([2,3]);
 
 
-belongsTo       = N..1
-hasMany         = 1..N
-belongsToMany   = N..N
+//////////////////////////////// CONTROLLER ////////////////////////////////
+$ php artisan make:controller FrontController --plain
+$ php artisan make:controller DashboardController --plain
+$ php artisan make:controller ProductController
+
+

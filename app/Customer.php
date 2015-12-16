@@ -13,8 +13,8 @@ class Customer extends Model
      */
     protected $fillable = ['username', 'email'];
 
-    // RELATION Posts <-> Category  :
-    public function posts()
+    // RELATION Products <-> Category  :
+    public function products()
     {
         return $this->belongsToMany('App\Post');
     }

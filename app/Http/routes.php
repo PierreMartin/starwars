@@ -11,8 +11,16 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
 
 
+//////////////////////// COTER PUBLIC : ////////////////////////
+Route::get('/', 'FrontController@index');
+
+
+/*
+Route::get('products', 'PostController@index');
+Route::get('product/{id?}', 'PostController@show');
+
+Route::get('contact', 'PostController@showContact');
+Route::post('contact', 'PostController@sendContact');
+*/

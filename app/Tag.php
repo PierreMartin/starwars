@@ -13,8 +13,8 @@ class Tag extends Model
      */
     protected $fillable = ['name'];
 
-    // RELATION  Posts <-> Tag :
-    public function posts()
+    // RELATION  Products <-> Tag :
+    public function products()
     {
         return $this->belongsToMany('App\Post');
     }

@@ -13,10 +13,10 @@ class Image extends Model
      */
     protected $fillable = ['name', 'uri', 'status', 'published_at'];
 
-    // RELATION Posts <-> Image :
-    public function post()
+    // RELATION Products <-> Image :
+    public function products()
     {
-        return $this->belongsTo('App\Post');
+        return $this->hasMany('App\Post');
     }
 
 }

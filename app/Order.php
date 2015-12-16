@@ -13,8 +13,8 @@ class Order extends Model
      */
     protected $fillable = ['total_price', 'commanded_at', 'status', 'customer_id'];
 
-    // RELATION Posts <-> Category  :
-    public function posts()
+    // RELATION Products <-> Category  :
+    public function products()
     {
         return $this->belongsToMany('App\Post');
     }

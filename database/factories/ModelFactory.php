@@ -28,7 +28,7 @@ $factory->define(App\User::class, function (Faker\Generator $faker) {
 $factory->define(App\Image::class, function (Faker\Generator $faker) {
     return [
         'name'          => $faker->word(1).'jpg',
-        'uri'           => $faker->imageUrl($width = 640, $height = 480),
+        'uri'           => $faker->imageUrl($width = 140, $height = 180),
         'status'        => rand(0,1),
         'published_at'  => Carbon\Carbon::now()
     ];
@@ -44,8 +44,8 @@ $factory->define(App\Category::class, function (Faker\Generator $faker) {
 $factory->define(App\Product::class, function (Faker\Generator $faker) {
     return [
         'title'         => $faker->word(1),
-        'abstract'      => $faker->word(10),
-        'content'       => $faker->paragraph(1),
+        'abstract'      => $faker->paragraph(1),
+        'content'       => $faker->paragraph(4),
         'price'         => rand(1,100),
         'status'        => rand(0,1),
         'published_at'  => Carbon\Carbon::now(),
