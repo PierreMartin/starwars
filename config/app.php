@@ -145,6 +145,12 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
 
+        /*
+         * My modules...
+         */
+        Barryvdh\Debugbar\ServiceProvider::class,
+        Illuminate\Html\HtmlServiceProvider::class,
+
     ],
 
     /*
@@ -193,6 +199,13 @@ return [
         'URL'       => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View'      => Illuminate\Support\Facades\View::class,
+
+        /*
+         * My modules...
+         */
+        'Debugbar'  => Barryvdh\Debugbar\Facade::class,
+        'Form'      => Illuminate\Html\FormFacade::class,
+        'Html'      => Illuminate\Html\HtmlFacade::class,
 
     ],
 
