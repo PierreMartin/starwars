@@ -31,12 +31,12 @@ class Product extends Model
 
     // RELATION Products <-> Customer : // belongsToMany
     public function customers() {
-        return $this->belongsToMany('App\Tag');
+        return $this->belongsToMany('App\Customer');
     }
 
     // RELATION Products <-> Order : // belongsToMany
     public function orders() {
-        return $this->belongsToMany('App\Tag');
+        return $this->belongsToMany('App\Order');
     }
 
 }

@@ -1,9 +1,11 @@
 @extends('layouts.front')
 
 @section('content')
+{{--
     <div class="pagination">
         {!!$products->render()!!}
     </div>
+--}}
 
     @foreach($products as $product)
         <h2><a href="{{ url('product', $product->id) }}">{{ $product->title }}</a></h2>
@@ -31,9 +33,11 @@
         <hr>
     @endforeach
 
+{{--
     <div class="pagination">
         {!!$products->render()!!}
     </div>
+--}}
 @endsection
 
 @section('footer')

@@ -16,7 +16,7 @@ class Customer extends Model
     // RELATION Products <-> Category  :
     public function products()
     {
-        return $this->belongsToMany('App\Post');
+        return $this->belongsToMany('App\Product');
     }
 
 }

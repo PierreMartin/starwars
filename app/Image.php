@@ -16,7 +16,7 @@ class Image extends Model
     // RELATION Products <-> Image :
     public function products()
     {
-        return $this->hasMany('App\Post');
+        return $this->hasMany('App\Product');
     }
 
 }

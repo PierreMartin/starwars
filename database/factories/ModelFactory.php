@@ -50,7 +50,7 @@ $factory->define(App\Product::class, function (Faker\Generator $faker) {
         'status'        => rand(0,1),
         'published_at'  => Carbon\Carbon::now(),
         'image_id'      => rand(1,3),
-        'category_id'   => rand(1,3)
+        'category_id'   => rand(1,2)
     ];
 });
 

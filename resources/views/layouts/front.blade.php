@@ -18,13 +18,13 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="{{ url('/') }}">E-Stars Wars</a>
+            <a class="navbar-brand" href="{{ url('/') }}"></a>
         </div>
 
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
                 <li><a href="{{ url('/') }}">Accueil</a></li>
-                {{--@include('partials.menu_categories')--}}
+                @include('partials.categories')
                 <li><a href="{{ url('contact') }}">Contact</a></li>
             </ul>
 
@@ -56,10 +56,12 @@
 </div>
 
 
-<footer style="background-color: #bda77d; ">
-    @section('footer')
-        <h3>Footer ici</h3>
-    @show
+<footer>
+    <div class="container">
+        <a href="{{ url('terms') }}">Mentions légales</a>
+        <a href="{{ url('contact') }}">Contact</a>
+        @include('partials.tags')
+    </div>
 </footer>
 
 </body>

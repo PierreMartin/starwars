@@ -15,12 +15,12 @@
 
 //////////////////////// COTER PUBLIC : ////////////////////////
 Route::get('/', 'FrontController@index');
+Route::get('product/{id}', 'FrontController@show');
 
+Route::get('terms', 'FrontController@showTerms');
 
-/*
-Route::get('products', 'PostController@index');
-Route::get('product/{id?}', 'PostController@show');
+Route::get('contact', 'FrontController@showContact');
+Route::post('contact', 'FrontController@sendContact');
 
-Route::get('contact', 'PostController@showContact');
-Route::post('contact', 'PostController@sendContact');
-*/
+Route::get('/categorie/{id}', 'FrontController@showProductByCategory');
+Route::get('/tag/{id}', 'FrontController@showProductByTag');

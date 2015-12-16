@@ -16,7 +16,7 @@ class Category extends Model
     // RELATION Products <-> Category  :
     public function products()
     {
-        return $this->hasMany('App\Post');
+        return $this->hasMany('App\Product');
     }
 
 
