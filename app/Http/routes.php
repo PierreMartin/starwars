@@ -24,3 +24,20 @@ Route::post('contact', 'FrontController@sendContact');
 
 Route::get('/categorie/{id}', 'FrontController@showProductByCategory');
 Route::get('/tag/{id}', 'FrontController@showProductByTag');
+
+
+//////////////////////// COTER BACK : ////////////////////////
+Route::group(['prefix' => 'admin'], function () {
+    Route::resource('/products', 'Admin\ProductController');// page d'accueil apres la connection
+});
+
+
+//////////////////////////// GESTION D'AUTH : ////////////////////////////
+// Authentication routes...
+Route::get('auth/login', 'Auth\AuthController@getLogin');
+Route::post('auth/login', 'Auth\AuthController@postLogin');
+Route::get('auth/logout', 'Auth\AuthController@getLogout');
+
+// Registration routes...
+Route::get('auth/register', 'Auth\AuthController@getRegister');
+Route::post('auth/register', 'Auth\AuthController@postRegister');

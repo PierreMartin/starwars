@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <title>@yield('title')</title>
 
-    <link href="{{ asset('assets/css/bootstrap.min.css') }}" rel="stylesheet" type="text/css">
+    <link href="{{ asset('assets/css/bootstrap_dark.min.css') }}" rel="stylesheet" type="text/css">
     <link href="{{ asset('assets/css/front.min.css') }}" rel="stylesheet" type="text/css">
 </head>
 

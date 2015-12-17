@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use \Carbon\Carbon;
 
 class Product extends Model
 {
@@ -38,5 +39,20 @@ class Product extends Model
     public function orders() {
         return $this->belongsToMany('App\Order');
     }
+
+    // METHODE POUR FORMATER LA DATE AU MOMENT DE L'ENVOI DU FORMULAIRE (AJOUTER POST) :
+    public function setPublishedAtAttribute($value) {
+        $now = Carbon::now();
+        $this->attributes['published_at'] = "$value {$now->hour}:{$now->minute}:{$now->second}";
+    }
+
+    // METHODE POUR COCHER LES CHECKBOXS AYANT DES TAGS :
+    public function hasTags($value) {
+        foreach($this->tags as $tag) {
+            if ($tag->id == $value) return true;
+        }
+        return false;
+    }
+
 
 }

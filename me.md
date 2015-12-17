@@ -52,3 +52,6 @@ $ php artisan make:controller DashboardController --plain
 $ php artisan make:controller ProductController
 
 
+//////////////////////////////// RULES FORMS ////////////////////////////////
+php artisan make:request ProductFormRequest
+php artisan make:request LoginFormRequest
