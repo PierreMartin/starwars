@@ -12,6 +12,7 @@ use App\Tag;
 use App\Category;
 use App\Image;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Session;
 
 class FrontController extends Controller
 {
@@ -80,4 +81,33 @@ class FrontController extends Controller
     {
         return view('front.terms.terms');
     }
+
+    //////////////////////////////// PAGE PANIER ////////////////////////////////
+    public function bag()
+    {
+        $bag_ids = Session::get('key.product_id'); // contient plusieurs id
+        $bag_nbs = Session::get('key.product_nb');
+
+        $tab_ids = [];
+        foreach($bag_ids as $key_id => $val_id)
+        {
+            //echo "<b>$key_id</b> : $val_id<br>";
+            array_push($tab_ids, Product::where('id', $val_id)->firstOrFail());
+        }
+
+
+        $tab_nbs = [];
+        foreach($bag_nbs as $key_nb => $val_nb)
+        {
+            //echo "<b>$key_nb</b> : $val_nb<br>";
+            array_push($tab_nbs, $val_nb);
+        }
+
+
+
+        //$product = Product::where('id', $bag_id)->firstOrFail();
+
+        return view('front.panier.panier', compact('tab_ids', 'tab_nbs', 'bag_nbs'));
+    }
+
 }

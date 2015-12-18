@@ -25,6 +25,11 @@ Route::post('contact', 'FrontController@sendContact');
 Route::get('/categorie/{id}', 'FrontController@showProductByCategory');
 Route::get('/tag/{id}', 'FrontController@showProductByTag');
 
+//////////////////////// COTER PUBLIC : ACHAT ////////////////////////
+Route::get('/bag', 'FrontController@bag');  // page panier
+Route::resource('/shop/products', 'ShopController');                    // CRUD 'store'
+
+
 
 //////////////////////// COTER BACK : ////////////////////////
 Route::group(['prefix' => 'admin'], function () {

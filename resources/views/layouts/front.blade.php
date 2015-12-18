@@ -29,6 +29,8 @@
             </ul>
 
             <ul class="nav navbar-nav navbar-right">
+                <li><a href="{{ url('/bag') }}">Mon panier</a></li>
+
                 <li><a href="{{ url('/auth/login') }}">Se connecter</a></li>
                 <li><a href="{{ url('/auth/register') }}">S'inscire</a></li>
             </ul>
