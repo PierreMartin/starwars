@@ -4,86 +4,53 @@
     <h1>Mon panier</h1>
 
 
-    <pre>{{ var_dump(Session()->get('key')) }}</pre>
+    {{--<pre>{{ var_dump(Session()->get('key')) }}</pre>--}}
     {{--<pre>{{ Session()->flush()  }}</pre>--}}
+    {{--<pre>{{ Session::forget('key[$key]');   }}</pre>--}}
 
 
-    @if($tab_ids)
-        @foreach($tab_ids as $product)
+    @if($tab_product)
+        @foreach($tab_product as $key => $product)
             <h2><a href="{{ url('product', $product->id) }}">{{ $product->title }}</a></h2>
 
             @if($product->image)
-                <a href="{{ url('product', $product->id) }}">image :<img src="{{ url(asset('uploads/'.$product->image->uri)) }}" alt="image_laravel"/></a>
+                {{--<a href="{{ url('product', $product->id) }}">image :<img src="{{ url(asset('uploads/'.$product->image->uri)) }}" alt="image_laravel"/></a>--}}
                 <a href="{{ url('product', $product->id) }}"><img src="{{ url($product->image->uri) }}" alt="image_laravel"/></a>
             @endif
+            <p>Quantités : {{ $tab_quantity[$key] }}</p>
+            <p>Prix : <bold>{{ $product->price }} €</bold></p>
+            <p>Prix total de ce produit : <bold>{{ $price_by_product = $product->price * $tab_quantity[$key] }} €</bold></p>
 
-            <p>Prix : {{ $product->price }} €</p>
-
-            quantity : {{ Session()->get("key.product_nb.1")  }} <br>
+            {{--{!! Form::open(['method' => 'post', 'url' => route('shop.products.deleteProduct', $product) ]) !!}
+                <button class="btn btn-warning">Supprimer</button>
+                {!! Form::hidden('product_id', $product->id) !!}
+            {!! Form::close() !!}--}}
             <hr>
         @endforeach
     @endif
 
 
-    <div>
-       {{-- <strong>total : {{ $product->price * $bag_nbs }} €</strong>--}}
-    </div>
-
-    <button class="btn btn-primary">Terminer la commande</button>
-
-
-
-
-
-
-{{--@section('content')
-
-    @foreach($products as $product)
-        <h2><a href="{{ url('product', $product->id) }}">{{ $product->title }}</a></h2>
-        @if($product->image)
-            --}}{{--<a href="{{ url('product', $product->id) }}">image :<img src="{{ url(asset('uploads/'.$product->image->uri)) }}" alt="image_laravel"/></a>--}}{{--
-            <a href="{{ url('product', $product->id) }}"><img src="{{ url($product->image->uri) }}" alt="image_laravel"/></a>
-        @endif
-        <p>{{ $product->abstract }}</p>
-        <p>{{ $product->published_at }}</p>
-        <p>{{ $product->price }} €</p>
-
-        @if($product->category)
-            <p>categorie : <a href="{{ url('category', $product->category->id) }}">{{ $product->category->title }}</a></p>
-        @endif
-
-        @if($product->tags)
-            Tags associés :
-            <ul>
-                @foreach($product->tags as $tag)
-                    <li><a href="{{ url('tag', $tag->id) }}">{{$tag->name}}</a></li>
-                @endforeach
-            </ul>
-        @endif
-
-        <hr>
-    @endforeach
-
-@endsection--}}
+    <table class="table table-striped table-hover ">
+        <thead>
+            <tr class="info">
+                <th>Nombre de produits différent</th>
+                <th>Prix total</th>
+            </tr>
+        </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        <p><strong>{{ count($tab_quantity) }}</strong></p>
+                    </td>
+                    <td>
+                        <p><strong>{{ $total_order }} €</strong></p>
+                    </td>
+                </tr>
+            </tbody>
+    </table>
 
 
-
-
-
-
-{{--<div class="well">
-    {!! Form::open(['url' => route('shop.products.store'), 'method' => 'POST']) !!}
-    <div class="form-group {{ $errors->has('product_id')? 'has-error' : '' }}">
-        {!! Form::label('product_id', 'Quantitée des produits :') !!}
-        {!! Form::select('product_id', [0, 1, 2, 3, 4, 5], 1, ['class' => 'form-control']) !!}
-        {!! $errors->first('product_id', '<span class="help-block">:message</span>') !!}
-
-        {!! Form::hidden('product_id', $product->id) !!}  enregistrement dans la table "customer_product" -> 'orders'
-    </div>
-    <button class="btn btn-primary">Commander</button>
-    {!! Form::close() !!}
-
-</div>--}}
+    <a href="{{url('bag-confirm')}}" class="btn btn-primary">Terminé</a>
 
 
 @endsection

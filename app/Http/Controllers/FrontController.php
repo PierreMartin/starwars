@@ -85,11 +85,33 @@ class FrontController extends Controller
     //////////////////////////////// PAGE PANIER ////////////////////////////////
     public function bag()
     {
+        $bag_ids  = Session::get('key.product_id'); // contient plusieurs id
+        $bag_nbs  = Session::get('key.product_nb');
+
+        $tab_product    = []; // on stock les produits
+        $tab_quantity   = []; // on stock les quantités
+        $total_order = 0;
+        foreach($bag_ids as $key => $idProduct){
+            $quantity = $bag_nbs[$key];
+            //echo $idProduct." -- ".$quantity."<br>";
+            $product = Product::where('id', $idProduct)->firstOrFail();
+            $total_order = $total_order + $product->price * $quantity;
+            array_push($tab_product, $product);
+            array_push($tab_quantity, $quantity);
+        }
+
+        return view('front.panier.panier', compact('tab_product', 'tab_quantity', 'total_order'));
+    }
+
+
+
+    public function bagConfirm()
+    {
         $bag_ids = Session::get('key.product_id'); // contient plusieurs id
         $bag_nbs = Session::get('key.product_nb');
 
         $tab_ids = [];
-        foreach($bag_ids as $key_id => $val_id)
+        foreach($bag_ids as $key_id => $val_id) // on liste chaque product_id dans $val_id
         {
             //echo "<b>$key_id</b> : $val_id<br>";
             array_push($tab_ids, Product::where('id', $val_id)->firstOrFail());
@@ -99,15 +121,12 @@ class FrontController extends Controller
         $tab_nbs = [];
         foreach($bag_nbs as $key_nb => $val_nb)
         {
-            //echo "<b>$key_nb</b> : $val_nb<br>";
             array_push($tab_nbs, $val_nb);
         }
 
-
-
         //$product = Product::where('id', $bag_id)->firstOrFail();
 
-        return view('front.panier.panier', compact('tab_ids', 'tab_nbs', 'bag_nbs'));
+        return view('front.panier.panier_confirm', compact('tab_ids', 'tab_nbs'));
     }
 
 }

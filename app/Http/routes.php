@@ -27,6 +27,7 @@ Route::get('/tag/{id}', 'FrontController@showProductByTag');
 
 //////////////////////// COTER PUBLIC : ACHAT ////////////////////////
 Route::get('/bag', 'FrontController@bag');  // page panier
+Route::get('/bag-confirm', 'FrontController@bagConfirm');  // page panier validation
 Route::resource('/shop/products', 'ShopController');                    // CRUD 'store'
 
 
