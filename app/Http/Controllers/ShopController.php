@@ -43,8 +43,8 @@ class ShopController extends Controller
         $product_id = Input::get('product_id');
         $quantity   = Input::get('quantity');
 
-        Session::push('key.product_id', $product_id);
-        Session::push('key.product_nb', $quantity +1);
+        Session::push("key.product_id", $product_id);
+        Session::push("key.product_nb", $quantity +1);
 
         return redirect()->back()->with('message', 'Article ajouté au panier');
     }

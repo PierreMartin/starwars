@@ -26,9 +26,10 @@ Route::get('/categorie/{id}', 'FrontController@showProductByCategory');
 Route::get('/tag/{id}', 'FrontController@showProductByTag');
 
 //////////////////////// COTER PUBLIC : ACHAT ////////////////////////
-Route::get('/bag', 'FrontController@bag');  // page panier
-Route::get('/bag-confirm', 'FrontController@bagConfirm');  // page panier validation
-Route::resource('/shop/products', 'ShopController');                    // CRUD 'store'
+Route::get('/bag', 'FrontController@bag');                  // view page panier
+Route::get('/bag-confirm', 'FrontController@bagConfirm');   // view page panier validation
+Route::resource('/shop/products', 'ShopController');        // CRUD 'store' (start the session)
+Route::get('/bag-delete/{id}', 'FrontController@bagDelete')->name('bag-delete');     // delete 1 Item From The Session
 
 
 

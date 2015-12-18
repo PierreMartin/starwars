@@ -85,23 +85,45 @@ class FrontController extends Controller
     //////////////////////////////// PAGE PANIER ////////////////////////////////
     public function bag()
     {
-        $bag_ids  = Session::get('key.product_id'); // contient plusieurs id
-        $bag_nbs  = Session::get('key.product_nb');
+        if ( Session::has('key') ) {
 
-        $tab_product    = []; // on stock les produits
-        $tab_quantity   = []; // on stock les quantités
-        $total_order = 0;
-        foreach($bag_ids as $key => $idProduct){
-            $quantity = $bag_nbs[$key];
-            //echo $idProduct." -- ".$quantity."<br>";
-            $product = Product::where('id', $idProduct)->firstOrFail();
-            $total_order = $total_order + $product->price * $quantity;
-            array_push($tab_product, $product);
-            array_push($tab_quantity, $quantity);
+            $bag_ids  = Session::get("key.product_id"); // contient plusieurs id
+            $bag_nbs  = Session::get("key.product_nb");
+
+            $tab_product    = []; // on stock les produits
+            $tab_quantity   = []; // on stock les quantités
+            $total_order = 0;
+            foreach($bag_ids as $key => $idProduct){
+                $quantity = $bag_nbs[$key];
+                //echo $idProduct." -- ".$quantity."<br>";
+                $product = Product::where('id', $idProduct)->firstOrFail();
+                $total_order = $total_order + $product->price * $quantity;
+                array_push($tab_product, $product);
+                array_push($tab_quantity, $quantity);
+            }
         }
 
         return view('front.panier.panier', compact('tab_product', 'tab_quantity', 'total_order'));
     }
+
+
+    public function bagDelete($id)
+    {
+        //Session::forget('key');
+
+        $bag_ids  = Session::get('key.product_id'); // contient plusieurs id
+        $bag_nbs  = Session::get('key.product_nb');
+
+
+        var_dump('<pre>');
+        var_dump($bag_ids, $bag_nbs);
+        var_dump('</pre>');
+
+        Session::forget("key");
+
+        return redirect()->back()->with('message', 'Le produit à bien été suprimé');
+    }
+
 
 
 
