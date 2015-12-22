@@ -25,7 +25,7 @@
 
 
     <div class="well">
-        {!! Form::open(['url' => route('shop.products.store'), 'method' => 'POST']) !!}
+        {!! Form::open(['url' => route('bag-add'), 'method' => 'POST']) !!}
             <div class="form-group {{ $errors->has('quantity')? 'has-error' : '' }}">
                 {!! Form::label('quantity', 'Quantitée :') !!}
                 {!! Form::select('quantity', [1, 2, 3, 4, 5], 0, ['class' => 'form-control']) !!}

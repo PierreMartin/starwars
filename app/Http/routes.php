@@ -25,11 +25,12 @@ Route::post('contact', 'FrontController@sendContact');
 Route::get('/categorie/{id}', 'FrontController@showProductByCategory');
 Route::get('/tag/{id}', 'FrontController@showProductByTag');
 
-//////////////////////// COTER PUBLIC : ACHAT ////////////////////////
-Route::get('/bag', 'FrontController@bag');                  // view page panier
-Route::get('/bag-confirm', 'FrontController@bagConfirm');   // view page panier validation
-Route::resource('/shop/products', 'ShopController');        // CRUD 'store' (start the session)
-Route::get('/bag-delete/{id}', 'FrontController@bagDelete')->name('bag-delete');     // delete 1 Item From The Session
+//////////////////////// COTER PUBLIC : PANIER ////////////////////////
+Route::get('/bag',          'BagController@bagShow');               // view page panier
+Route::get('/bag-confirm',  'BagController@bagConfirm');            // view page panier validation
+Route::post('/bag-add',     'BagController@bagAddBySession')->name('bag-add');
+Route::get('/bag-delete',   'BagController@bagDelete')->name('bag-delete');     // delete 1 Item From The Session
+Route::post('/bag-store',   'BagController@bagStore')->name('bag-store');       // save in db
 
 
 

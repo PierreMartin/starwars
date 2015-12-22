@@ -46,6 +46,12 @@
         </blockquote>
     @endif
 
+    @if(Session::has('error'))
+        <blockquote>
+            <div class="alert alert-dismissible alert-danger">{{ Session::get('error') }}</div>
+        </blockquote>
+    @endif
+
     <div class="row">
         <div class="col-sm-9">
             @yield('content')

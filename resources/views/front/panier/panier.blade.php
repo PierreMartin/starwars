@@ -19,8 +19,6 @@
             <p>Quantités : {{ $tab_quantity[$key] }}</p>
             <p>Prix : <bold>{{ $product->price }} €</bold></p>
             <p>Prix total de ce produit : <bold>{{ $price_by_product = $product->price * $tab_quantity[$key] }} €</bold></p>
-
-            <a class="btn btn-warning" href="{{ route('bag-delete', $key) }}">Supprimer</a>
             <hr>
         @endforeach
     @endif
@@ -46,6 +44,7 @@
         </table>
 
         <a href="{{url('bag-confirm')}}" class="btn btn-primary">Terminé la commande</a>
+        <a class="btn btn-warning" href="{{ route('bag-delete') }}">Vider le panier</a>
     @endif
 
 

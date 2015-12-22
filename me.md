@@ -50,7 +50,7 @@ belongsToMany   = N..N
 $ php artisan make:controller FrontController --plain
 $ php artisan make:controller DashboardController --plain
 $ php artisan make:controller ProductController
-$ php artisan make:controller ShopController
+$ php artisan make:controller BagController --plain
 
 
 //////////////////////////////// RULES FORMS ////////////////////////////////
