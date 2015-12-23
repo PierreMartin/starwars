@@ -48,11 +48,15 @@ belongsToMany   = N..N
 
 //////////////////////////////// CONTROLLER ////////////////////////////////
 $ php artisan make:controller FrontController --plain
-$ php artisan make:controller DashboardController --plain
 $ php artisan make:controller ProductController
 $ php artisan make:controller BagController --plain
+$ php artisan make:controller OrderController --plain
 
 
 //////////////////////////////// RULES FORMS ////////////////////////////////
 php artisan make:request ProductFormRequest
 php artisan make:request LoginFormRequest
+php artisan make:request LoginCustomerFormRequest
+
+            'customer_name' => 'required|max:255',
+            'customer_email'=> 'required|email',

@@ -14,16 +14,16 @@
 
 
 //////////////////////// COTER PUBLIC : ////////////////////////
-Route::get('/', 'FrontController@index');
-Route::get('product/{id}', 'FrontController@show');
+Route::get('/',                 'FrontController@index');
+Route::get('product/{id}',      'FrontController@show');
 
-Route::get('terms', 'FrontController@showTerms');
+Route::get('terms',             'FrontController@showTerms');
 
-Route::get('contact', 'FrontController@showContact');
-Route::post('contact', 'FrontController@sendContact');
+Route::get('contact',           'FrontController@showContact');
+Route::post('contact',          'FrontController@sendContact');
 
-Route::get('/categorie/{id}', 'FrontController@showProductByCategory');
-Route::get('/tag/{id}', 'FrontController@showProductByTag');
+Route::get('/categorie/{id}',   'FrontController@showProductByCategory');
+Route::get('/tag/{id}',         'FrontController@showProductByTag');
 
 //////////////////////// COTER PUBLIC : PANIER ////////////////////////
 Route::get('/bag',          'BagController@bagShow');               // view page panier
@@ -36,7 +36,9 @@ Route::post('/bag-store',   'BagController@bagStore')->name('bag-store');       
 
 //////////////////////// COTER BACK : ////////////////////////
 Route::group(['prefix' => 'admin'], function () {
-    Route::resource('/products', 'Admin\ProductController');// page d'accueil apres la connection
+    Route::resource('/products', 'Admin\ProductController');      // page d'accueil apres la connection
+    Route::get('/orders',        'Admin\OrderController@index');  // page d'affichage des commandes
+    Route::get('/unpaid',        'Admin\OrderController@unpaid');  // page d'affichage des commandes non payés
 });
 
 

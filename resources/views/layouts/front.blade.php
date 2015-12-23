@@ -6,6 +6,7 @@
 
     <link href="{{ asset('assets/css/bootstrap_dark.min.css') }}" rel="stylesheet" type="text/css">
     <link href="{{ asset('assets/css/front.min.css') }}" rel="stylesheet" type="text/css">
+    <link href="{{ asset('assets/css/main.css') }}" rel="stylesheet" type="text/css">
 </head>
 
 <body>

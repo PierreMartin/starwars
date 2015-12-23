@@ -7,6 +7,7 @@ use App\Order;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
+use App\Http\Requests\LoginCustomerFormRequest; // add
 use App\Http\Controllers\Controller;
 
 use App\Product;
@@ -92,7 +93,7 @@ class BagController extends Controller
     }
 
 
-    public function bagStore(Request $request) {
+    public function bagStore(LoginCustomerFormRequest $request) {
         /////////////////////// "AUTH" CLIENT ///////////////////////
         $customer_name  = Input::get('customer_name');
         $customer_email = Input::get('customer_email');
@@ -103,13 +104,15 @@ class BagController extends Controller
         if( !empty($customer) ) {
             $order = Order::create($request->all());
 
-            /////// On va associer LA commande aux produits :
-            //$order->products()->sync($request->get('products'));
-
             $customer_id = $customer->id;
 
             $order->customer_id = $customer_id;
             $order->save();
+
+
+            /////// On va associer LA commande aux produits :
+            $bag_ids = Session::get("key.product_id"); // contient l'id des produits
+            $order->products()->sync($bag_ids);
 
             Session::flush();
 

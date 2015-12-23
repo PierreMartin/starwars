@@ -24,7 +24,8 @@
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
                     <li><a href="{{ url('/') }}">Retour site</a></li>
-                    <li><a href="{{ url('/admin/products') }}">Home dashboard</a></li>
+                    <li><a href="{{ url('/admin/products') }}">Accueil Dashboard</a></li>
+                    <li><a href="{{ url('/admin/orders') }}">Historique des commandes</a></li>
                 </ul>
 
                 <ul class="nav navbar-nav navbar-right">

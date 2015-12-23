@@ -35,12 +35,12 @@
     <div class="well">
         <h3>Authentification :</h3>
         {{-- step 1 : on verifier que les 2 champs match bien dans la bdd --}}
-        {{-- step 2 : on save les champs (sauf 'email') en bdd -> table 'orders' --}}
+        {{-- step 2 : on save les champs en bdd -> table 'orders' --}}
 
         {!! Form::open(['url' => route('bag-store'), 'method' => 'POST']) !!}
             <div class="form-group {{ $errors->has('customer_name')? 'has-error' : '' }}">
                 {!! Form::label('customer_name', 'nom d\'utilisateur') !!}
-                {!! Form::text('customer_name', null, ['class' => 'form-control']) !!}  {{-- foreing !! --}}
+                {!! Form::text('customer_name', null, ['class' => 'form-control']) !!}
                 {!! $errors->first('customer_name', '<span class="help-block">:message</span>') !!}
             </div>
             <div class="form-group {{ $errors->has('customer_email')? 'has-error' : '' }}">
@@ -52,7 +52,7 @@
                 {!! Form::hidden('commanded_at', \Carbon\Carbon::now()) !!}
                 {!! Form::hidden('total_price', $total_order) !!}
 
-            <button class="btn btn-primary">Terminé</button>
+            <button class="btn btn-primary">Commander</button>
             <a href="{{url('bag')}}" class="btn btn-primary">Modifier la commande</a>
         {!! Form::close() !!}
     </div>
