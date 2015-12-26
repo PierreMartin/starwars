@@ -21,9 +21,10 @@
 
         <div class="row">
             <div class="col-sm-6">
-                <label>Image</label><br>
+                <label>Image (taille optimale : supérieure à 600px par 450px)</label><br>
                 @if($product->image)
-                    <a href="{{ url('post', $product->id) }}"><img src="{{ url($product->image->uri) }}" alt="image_laravel"/></a>
+                    <img src="{{ url(asset('uploads/preview/'.$product->image->uri_preview)) }}" alt="image_laravel"/>
+                    {{--<a href="{{ url('post', $product->id) }}"><img src="{{ url($product->image->uri) }}" alt="image_laravel"/></a>--}}
                 @endif
 
                 <div class="form-group {{ $errors->has('image')? 'has-error' : '' }}">

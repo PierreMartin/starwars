@@ -15,6 +15,11 @@ use \Carbon\Carbon;
 
 class OrderController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function index() {
         $orders = Order::orderBy('commanded_at', 'desc')->with('customer', 'products')->paginate(10);
 

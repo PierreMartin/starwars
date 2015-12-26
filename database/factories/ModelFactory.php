@@ -29,6 +29,7 @@ $factory->define(App\Image::class, function (Faker\Generator $faker) {
     return [
         'name'          => $faker->word(1).'jpg',
         'uri'           => $faker->imageUrl($width = 140, $height = 180),
+        'uri_preview'   => $faker->imageUrl($width = 100, $height = 100),
         'status'        => rand(0,1),
         'published_at'  => Carbon\Carbon::now()
     ];
@@ -49,7 +50,7 @@ $factory->define(App\Product::class, function (Faker\Generator $faker) {
         'price'         => rand(1,100),
         'status'        => rand(0,1),
         'published_at'  => Carbon\Carbon::now(),
-        'image_id'      => rand(1,3),
+        //'image_id'      => rand(1,3),
         'category_id'   => rand(1,2)
     ];
 });

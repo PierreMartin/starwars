@@ -13,8 +13,7 @@
             <h2><a href="{{ url('product', $product->id) }}">{{ $product->title }}</a></h2>
 
             @if($product->image)
-                {{--<a href="{{ url('product', $product->id) }}">image :<img src="{{ url(asset('uploads/'.$product->image->uri)) }}" alt="image_laravel"/></a>--}}
-                <a href="{{ url('product', $product->id) }}"><img src="{{ url($product->image->uri) }}" alt="image_laravel"/></a>
+                <a href="{{ url('product', $product->id) }}"><img src="{{ url(asset('uploads/preview/'.$product->image->uri_preview)) }}" alt="image_laravel"/></a>
             @endif
             <p>Quantités : {{ $tab_quantity[$key] }}</p>
             <p>Prix : <bold>{{ $product->price }} €</bold></p>

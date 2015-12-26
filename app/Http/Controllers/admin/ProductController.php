@@ -9,10 +9,14 @@ use App\Http\Requests\ProductFormRequest; // add
 use App\Http\Controllers\Controller;
 
 use App\Product;
+use App\Image;
 use App\Tag;
 use App\Category;
 use Form;
 use \Carbon\Carbon;
+use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Input;
+use Illuminate\Support\Str;
 
 class ProductController extends Controller
 {
@@ -66,31 +70,35 @@ class ProductController extends Controller
             $product->tags()->sync($request->get('tags'));
         }
 
-/*        // FILES :
-        $file   = array('image' => Input::file('image'));
-        $rules  = array('image' => 'required',); //mimes:jpeg,bmp,png and for max size max:10000
 
-        //if ( !empty($_POST['image']) ) {
-        if (Input::file('image')->isValid()) {
-            $destinationPath = 'uploads';
-            $extension = Input::file('image')->getClientOriginalExtension();
-            $fileName = rand(11111,99999).'.'.$extension;
-            Input::file('image')->move($destinationPath, $fileName);
+        if ( Input::hasFile('image') ) {
+            $destinationPath1   = 'uploads/main/';
+            $destinationPath2   = 'uploads/preview/';
+            $extension          = Input::file('image')->getClientOriginalExtension();
+            $fileName1          = Str::random(10) . Carbon::now()->timestamp . '.'.$extension;
+            $fileName2          = Str::random(10) . Carbon::now()->timestamp . '.'.$extension;
 
-            // on insere un champ 'name' dans la bdd 'images' :
-            $image = Image::create($request->all());
-            $image->name = $fileName;
+            \Intervention\Image\Facades\Image::make(Input::file('image')->getRealPath())
+                // big
+                ->fit(600, 450)
+                ->save($destinationPath1 . $fileName1)
+                // preview
+                ->fit(180, 180)
+                ->save($destinationPath2 . $fileName2);
+
+
+            // on insere un champ 'uri' + 'uri_preview' dans la bdd 'images' :
+            $image              = Image::create($request->all());
+            $image->uri         = $fileName1;
+            $image->uri_preview = $fileName2;
+            $image->status      = 1; // 1 pour validé
             $image->save();
 
             // on insere un champ 'id' dans la bdd 'posts' :
-            $image_id = $image->id;
-            $product->image_id = $image_id;
+            $image_id           = $image->id;
+            $product->image_id  = $image_id;
             $product->save();
-        } else {
-            return redirect(route('admin.products.edit', $product))->with('message', 'Erreur : l\'image n\'est pas bonne');
-            die();
         }
-        //}*/
 
         return redirect(route('admin.products.edit', $product))->with('message', 'Le produit à bien été créer ! Vous pouvez maitenant le modifier');
 
@@ -144,31 +152,35 @@ class ProductController extends Controller
             $product->tags()->sync($request->get('tags'));
         }
 
-        /*// FILES :
-        $file   = array('image' => Input::file('image'));
-        $rules  = array('image' => 'required',); //mimes:jpeg,bmp,png and for max size max:10000
 
-        //if ( !empty($_POST['image']) ) {
-        if (Input::file('image')->isValid()) {
-            $destinationPath = 'uploads';
-            $extension = Input::file('image')->getClientOriginalExtension();
-            $fileName = rand(11111,99999).'.'.$extension;
-            Input::file('image')->move($destinationPath, $fileName);
+        if ( Input::hasFile('image') ) {
+            $destinationPath1   = 'uploads/main/';
+            $destinationPath2   = 'uploads/preview/';
+            $extension          = Input::file('image')->getClientOriginalExtension();
+            $fileName1          = Str::random(10) . Carbon::now()->timestamp . '.'.$extension;
+            $fileName2          = Str::random(10) . Carbon::now()->timestamp . '.'.$extension;
 
-            // on insere un champ 'name' dans la bdd 'images' :
-            $image = Image::create($request->all());
-            $image->name = $fileName;
+            \Intervention\Image\Facades\Image::make(Input::file('image')->getRealPath())
+                // big
+                ->fit(600, 450)
+                ->save($destinationPath1 . $fileName1)
+                // preview
+                ->fit(180, 180)
+                ->save($destinationPath2 . $fileName2);
+
+
+            // on insere un champ 'uri' + 'uri_preview' dans la bdd 'images' :
+            $image              = Image::create($request->all());
+            $image->uri         = $fileName1;
+            $image->uri_preview = $fileName2;
+            $image->status      = 1; // 1 pour validé
             $image->save();
 
             // on insere un champ 'id' dans la bdd 'posts' :
-            $image_id = $image->id;
-            $product->image_id = $image_id;
+            $image_id           = $image->id;
+            $product->image_id  = $image_id;
             $product->save();
-        } else {
-            return redirect(route('admin.posts.edit', $post))->with('message', 'Erreur : l\'image n\'est pas bonne');
-            die();
         }
-        //}*/
 
         return redirect(route('admin.products.edit', $id))->with('message', 'Le produit à bien été modifier !');
     }

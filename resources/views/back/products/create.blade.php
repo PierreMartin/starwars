@@ -22,7 +22,7 @@
         <div class="row">
             <div class="col-sm-6">
                 <div class="form-group {{ $errors->has('image')? 'has-error' : '' }}">
-                    {!! Form::label('image', 'Image :') !!}
+                    {!! Form::label('image', 'Image : (taille optimale : supérieure à 600px par 450px)') !!}
                     {!! Form::file('image', ['class' => 'form-control']) !!}
                     {!! $errors->first('image', '<span class="help-block">:message</span>') !!}
                 </div>

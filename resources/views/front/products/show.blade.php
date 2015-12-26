@@ -3,7 +3,8 @@
 @section('content')
     <h1>{{ $product->title }}</h1>
     @if($product->image)
-        <a href="{{ url('post', $product->id) }}"><img src="{{ url($product->image->uri) }}" alt="image_laravel"/></a>
+        <img src="{{ url(asset('uploads/main/'.$product->image->uri)) }}" alt="image_laravel"/>
+        {{--<a href="{{ url('post', $product->id) }}"><img src="{{ url($product->image->uri) }}" alt="image_laravel"/></a>--}}
     @endif
     <p>{{ $product->content }}</p>
     <p>{{ $product->published_at }}</p>
