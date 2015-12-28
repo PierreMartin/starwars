@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
+use App\Http\Requests\ContactFormRequest; // add
 use App\Http\Controllers\Controller;
 
 use App\Product;
@@ -14,6 +15,7 @@ use App\Image;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Session;
+use Mail;
 
 class FrontController extends Controller
 {
@@ -47,11 +49,12 @@ class FrontController extends Controller
     public function showProductByTag($id)
     {
         $products = Tag::find($id)->products; // TODO: Voir probleme de l'ajout d'un "where status(in table products) = true"
+
         return view('front.tags.index', compact('products'));
     }
 
 
-    //////////////////////////////// GESTION DES MAILS ////////////////////////////////
+    //////////////////////////////// PAGE CONTACT ////////////////////////////////
     public function showContact()
     {
         return view('front.contact.contact');
@@ -59,22 +62,24 @@ class FrontController extends Controller
 
     public function sendContact(ContactFormRequest $request)
     {
-        // $message        = $request->all()['message'];
-        // $email          = $request->all()['email'];
-        // $category_id    = $request->all()['category_id'];
+        $messageMain    = $request->input('message');
+        $email          = $request->input('email');
 
-        // $contents = [
-        //     'message'       => $request->input('message'),
-        //     'email'         => $request->input('email'),
-        //     'category_id'   => $request->input('category_id')
-        // ];
+        \Akismet::setCommentContent($request->input('message'))
+            ->setCommentAuthorEmail($request->input('email'))
+            ->setCommentAuthorUrl($request->url());
+        if (\Akismet::isSpam()) {
+            return redirect()->back()->with('error', 'Message considéré comme du spam ! Merci d\'envoyer un message sans intentions commercial');
+        } else {
+            Mail::send('emails.email', compact('messageMain', 'email'), function($message) use ($request) {
+                $message->from('hicode@hicode.fr', 'Laravel');
+                $message->to('pierremartin.pro@gmail.com')->cc('bar@exemple.com');
+            });
 
-        $contents = $request->all();
+            return redirect()->back()->with('message', 'Message envoyé');
+        }
 
-        Mail::send('emails.email', compact('contents'), function($message) use ($request) {
-            $message->from('hicode@hicode.fr', 'Laravel');
-            $message->to('pierremartin.pro@gmail.com')->cc('bar@exemple.com');
-        });
+
     }
 
     //////////////////////////////// PAGE MENTIONS LEGALS ////////////////////////////////

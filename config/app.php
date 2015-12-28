@@ -150,7 +150,8 @@ return [
          */
         Barryvdh\Debugbar\ServiceProvider::class,
         Illuminate\Html\HtmlServiceProvider::class,
-        Intervention\Image\ImageServiceProvider::class
+        Intervention\Image\ImageServiceProvider::class,
+        nickurt\Akismet\ServiceProvider::class
 
     ],
 
@@ -207,7 +208,8 @@ return [
         'Debugbar'  => Barryvdh\Debugbar\Facade::class,
         'Form'      => Illuminate\Html\FormFacade::class,
         'Html'      => Illuminate\Html\HtmlFacade::class,
-        'Image'    => Intervention\Image\Facades\Image::class
+        'Image'     => Intervention\Image\Facades\Image::class,
+        'Akismet'   => nickurt\Akismet\Facade::class,
 
     ],
 

@@ -57,6 +57,18 @@ $ php artisan make:controller OrderController --plain
 php artisan make:request ProductFormRequest
 php artisan make:request LoginFormRequest
 php artisan make:request LoginCustomerFormRequest
+php artisan make:request ContactFormRequest
 
             'customer_name' => 'required|max:255',
             'customer_email'=> 'required|email',
+
+//////////////////////////////// MAIL DEV ////////////////////////////////
+maildev
+-> http://localhost:1080/
+test Akismet : viagra-test-123
+
+
+//////////////////////////////// GRUNT + SASS ////////////////////////////////
+$ rvm install ruby-2.2-head --disable-binary
+$ rvm list
+$ grunt sass

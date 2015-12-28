@@ -9,7 +9,8 @@
         "laravel/framework": "5.1.*",
         "barryvdh/laravel-debugbar": "^2.0",
         "illuminate/html": "^5.0",
-        "intervention/image": "^2.3"
+        "intervention/image": "^2.3",
+        "nickurt/laravel-akismet": "dev-master"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",
