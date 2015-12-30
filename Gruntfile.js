@@ -1,61 +1,86 @@
 module.exports = function(grunt) {
 
-    // "uglify" = minifie les fichier .js (avec Angular, ajouter l'option "mangle")
-    // "jshint" = verifie que notre js de base est valide
-    // "cssmin" = minifie les fichier .css
-
-    // "load-grunt-tack" = Plugin qui permet d'écrire automatiquement tous les "grunt.loadNpmTasks" en 1 seul 
-
     grunt.loadNpmTasks('grunt-contrib-sass');
-    grunt.loadNpmTasks('grunt-contrib-cssmin');
-    grunt.loadNpmTasks('grunt-contrib-uglify');
+    require('load-grunt-tasks')(grunt);
+
 
     // Configuration de Grunt 
     grunt.initConfig({
-        sass: {                              // Task
-            dist: {                            // Target
-                options: {                       // Target options
-                    style: 'expanded'
-                },
-                files: {                         // Dictionary of files
-                    'main.css': 'app.scss'       // 'destination': 'source'
-                }
-            }
-        }
 
-        /*cssmin: {
-            minify: {
-                expand: true,
-                cwd: 'css/',
-                src: ['*.css', '!*.min.css'],
-                dest: 'css/',
-                ext: '.min.css'
-            }
-        },*/
+        //////////////////////////////// JS VERIFE ////////////////////////////////
+        jshint: {
+            all: [
+                // ON VERIFE :
+                'resources/assets/js/*.js',
 
-        /*uglify: {
-            target: {
+                // ON EXCLUE LES MINIFIER :
+                '!public/assets/js/*.min.js'
+            ]
+        },
+
+        //////////////////////////////// JS ////////////////////////////////
+        uglify: {
+            options: {
+                mangle: false
+            },
+            main_js: {
                 files: {
-                    'js/app.min.js' : [
-                        'js/app.js',
-                        'js/HomepageController.js',
-                        'js/AboutController.js',
-                        'js/ContactController.js'
+                    'public/assets/js/main.min.js': [
+                        'resources/assets/js/main.js',
+                        '!public/assets/js/*.min.js'
                     ]
                 }
             }
-        }*/
+        },
+
+        //////////////////////////////// SCSS ////////////////////////////////
+        sass: {
+            options: {
+                compass: true,
+                style: 'expanded'
+            },
+            backo_css: {
+                files: {'public/assets/css/backo.min.css': ['resources/assets/sass/backo.scss']}
+            },
+            front_css: {
+                files: {'public/assets/css/front.min.css': ['resources/assets/sass/front.scss']}
+            },
+            main_css: {
+                files: {'public/assets/css/main.min.css': ['resources/assets/sass/main.scss']}
+            }
+        },
+
+        //////////////////////////////// WATCH ////////////////////////////////
+        watch: {
+            js: {
+                files: ['resources/assets/js/*.js', '!public/assets/js/*.min.js'], // fichiers d'entrer
+                tasks: ['uglify'],
+                options: { spawn: false }
+            },
+            css: {
+                files: ['resources/assets/sass/*.scss', '!public/assets/css/*.min.css'],
+                tasks: ['sass'],
+                options: { spawn: false }
+            }
+        }
 
 
     });
 
-    // Définition des tâches Grunt
-    // LANCER LES COMMANDES :
 
-    grunt.registerTask('sass', ['sass']);
+    grunt.registerTask('default', [
+        'jshint',
+        'uglify',
+        'sass'
+    ]);
     grunt.registerTask('js', ['uglify']);
     grunt.registerTask('compile', ['css', 'js']);
 
 };
 
+// $ grunt
+// $ grunt watch
 
+// CDN JS :  telechargement + rapide et mise en cache
+// pourquoi grunt : plus de plugins dispo car plus vieux | plus de support
+// pourquoi sass : plus recent (less est de - en - utilisé, tendance a disparaitre) et support de compass

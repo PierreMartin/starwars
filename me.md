@@ -69,6 +69,5 @@ test Akismet : viagra-test-123
 
 
 //////////////////////////////// GRUNT + SASS ////////////////////////////////
-$ rvm install ruby-2.2-head --disable-binary
-$ rvm list
-$ grunt sass
+$ sudo gem install -n /usr/local/bin sass
+$ grunt

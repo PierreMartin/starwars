@@ -5,7 +5,8 @@
     <title>@yield('title')</title>
 
     <link href="{{ asset('assets/css/bootstrap_lumen.min.css') }}" rel="stylesheet" type="text/css">
-    <link href="{{ asset('assets/css/front.min.css') }}" rel="stylesheet" type="text/css">
+    <link href="{{ asset('assets/css/backo.min.css') }}" rel="stylesheet" type="text/css">
+    <link href="{{ asset('assets/css/main.min.css') }}" rel="stylesheet" type="text/css">
 </head>
 
 <body>
@@ -66,6 +67,6 @@
 
 
     <script src="{{ asset('assets/js/jquery-1.11.3.min.js') }}"></script>
-    <script src="{{ asset('assets/js/main.js') }}"></script>
+    <script src="{{ asset('assets/js/main.min.js') }}"></script>
 </body>
 </html>

@@ -69,7 +69,7 @@ class FrontController extends Controller
             ->setCommentAuthorEmail($request->input('email'))
             ->setCommentAuthorUrl($request->url());
         if (\Akismet::isSpam()) {
-            return redirect()->back()->with('error', 'Message considéré comme du spam ! Merci d\'envoyer un message sans intentions commercial');
+            return redirect()->back()->with('error', 'Message considéré comme du spam ! Merci d\'envoyer un message sans intentions commerciales');
         } else {
             Mail::send('emails.email', compact('messageMain', 'email'), function($message) use ($request) {
                 $message->from('hicode@hicode.fr', 'Laravel');
