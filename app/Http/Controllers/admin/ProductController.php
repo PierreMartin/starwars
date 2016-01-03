@@ -48,8 +48,9 @@ class ProductController extends Controller
         $categories = Category::lists('title', 'id');
         //$tags       = Tag::lists('name', 'id');
         $tags       = Tag::get();
+        $time       = Carbon::now()->format('d-m-Y');
 
-        return view('back.products.create', compact('categories', 'tags'));
+        return view('back.products.create', compact('categories', 'tags', 'time'));
     }
 
     /**
@@ -62,8 +63,14 @@ class ProductController extends Controller
     {
         $product = Product::create($request->all());
 
+        // gestion du champ date : // 02-01-2016 (vue) => 2016-01-02 (bdd)
+        $t      = Input::get('published_at');       // string
+        $time   = Carbon::createFromFormat('d-m-Y', $t)->toDateTimeString();
+        $product->published_at = $time;
+
         // gestion du checkbox boolean 'en ligne?' :
         $product->status = (empty($request->input('status')))? 0 : 1;
+        $product->save();
 
         // envoi des tags a la bdd :
         if( !empty($request->input('tags')) ) {
@@ -123,11 +130,14 @@ class ProductController extends Controller
      */
     public function edit($id)
     {
-        $product    = Product::findOrFail($id);
-        $categories = Category::lists('title', 'id');
-        $tags       = Tag::get();
+        $product        = Product::findOrFail($id);
+        $categories     = Category::lists('title', 'id');
+        $tags           = Tag::get();
 
-        return view('back.products.edit', compact('product', 'categories', 'tags'));
+        $timeFromInput  = $product->published_at;
+        $time = Carbon::parse($timeFromInput)->format('d-m-Y');
+
+        return view('back.products.edit', compact('product', 'categories', 'tags', 'time'));
     }
 
     /**
@@ -142,6 +152,11 @@ class ProductController extends Controller
         $product = Product::findOrFail($id);
 
         $product->update($request->all());
+
+        // gestion du champ date : // 02-01-2016 (vue) => 2016-01-02 (bdd)
+        $t      = Input::get('published_at');       // string
+        $time   = Carbon::createFromFormat('d-m-Y', $t)->toDateTimeString();
+        $product->published_at = $time;
 
         // gestion du checkbox boolean 'en ligne?' :
         $product->status = (empty($request->input('status')))? 0 : 1;

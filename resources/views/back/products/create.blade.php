@@ -30,7 +30,7 @@
             <div class="col-sm-6">
                 <div class="form-group {{ $errors->has('published_at')? 'has-error' : '' }}">
                     {!! Form::label('published_at', 'Date de création') !!}
-                    {!! Form::input('date', 'published_at', \Carbon\Carbon::now()->toDateString(), ['class' => 'form-control']) !!}
+                    {!! Form::input('text', 'published_at', $time, ['class' => 'form-control datepicker']) !!}
                     {!! $errors->first('published_at', '<span class="help-block">:message</span>') !!}
                 </div>
             </div>

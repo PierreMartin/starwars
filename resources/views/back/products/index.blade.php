@@ -48,7 +48,7 @@
                 </td>
 
                 <td>
-                    <p>{{ $product->published_at }}</p>
+                    <p>{{ \Carbon\Carbon::parse($product->published_at)->format('d/m/Y')  }}</p>
                 </td>
 
                 <td>

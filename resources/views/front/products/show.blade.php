@@ -7,7 +7,7 @@
         {{--<a href="{{ url('post', $product->id) }}"><img src="{{ url($product->image->uri) }}" alt="image_laravel"/></a>--}}
     @endif
     <p>{{ $product->content }}</p>
-    <p>{{ $product->published_at }}</p>
+    <p><p>Produit ajouté le {{ \Carbon\Carbon::parse($product->published_at)->format('d/m/Y') }}</p></p>
     <p>{{ $product->price }} €</p>
 
 

@@ -11,7 +11,7 @@
             <a href="{{ url('product', $product->id) }}"><img src="{{ url(asset('uploads/preview/'.$product->image->uri_preview)) }}" alt="image_laravel"/></a>
         @endif
         <p>{{ $product->abstract }}</p>
-        <p>{{ $product->published_at }}</p>
+        <p>Produit ajouté le {{ \Carbon\Carbon::parse($product->published_at)->format('d/m/Y') }}</p>
         <p>{{ $product->price }} €</p>
 
         @if($product->category)

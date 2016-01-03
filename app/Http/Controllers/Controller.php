@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Category;
 use App\Tag;
+use App\User;
 use Illuminate\Support\Facades\Auth;
 
 use Illuminate\Foundation\Bus\DispatchesJobs;

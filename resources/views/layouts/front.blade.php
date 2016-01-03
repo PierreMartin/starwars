@@ -5,8 +5,8 @@
     <title>@yield('title')</title>
 
     <link href="{{ asset('assets/css/bootstrap_dark.min.css') }}" rel="stylesheet" type="text/css">
-    <link href="{{ asset('assets/css/front.css') }}" rel="stylesheet" type="text/css">
-    <link href="{{ asset('assets/css/main.css') }}" rel="stylesheet" type="text/css">
+    <link href="{{ asset('assets/css/front.min.css') }}" rel="stylesheet" type="text/css">
+    <link href="{{ asset('assets/css/main.min.css') }}" rel="stylesheet" type="text/css">
 </head>
 
 <body>
@@ -30,10 +30,14 @@
                 </ul>
 
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a href="{{ url('/bag') }}">Mon panier</a></li>
-
-                    <li><a href="{{ url('/auth/login') }}">Se connecter</a></li>
-                    <li><a href="{{ url('/auth/register') }}">S'inscire</a></li>
+                    @if(!Auth::check())
+                        <li><a href="{{ url('/bag') }}">Mon panier</a></li>
+                        <li><a href="{{ url('/auth/login') }}">Se connecter</a></li>
+                        <li><a href="{{ url('/auth/register') }}">S'inscire</a></li>
+                    @else
+                        <li><a href="{{ url('/admin/products') }}">Retour Dashboard</a></li>
+                        <li><a href="{{ url('/auth/logout') }}">Se déconnecter</a></li>
+                    @endif
                 </ul>
             </div>
         </div>

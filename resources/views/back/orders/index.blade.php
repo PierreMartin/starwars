@@ -24,7 +24,7 @@
         @foreach($orders as $order)
             <tr>
                 <td>
-                    <p>{{ $order->commanded_at }}</p>
+                    <p>{{ \Carbon\Carbon::parse($order->commanded_at)->format('d/m/Y')  }}</p>
                 </td>
 
                 <td>

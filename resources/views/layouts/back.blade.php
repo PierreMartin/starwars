@@ -5,6 +5,7 @@
     <title>@yield('title')</title>
 
     <link href="{{ asset('assets/css/bootstrap_lumen.min.css') }}" rel="stylesheet" type="text/css">
+    <link href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css" rel="stylesheet" type="text/css">
     <link href="{{ asset('assets/css/backo.min.css') }}" rel="stylesheet" type="text/css">
     <link href="{{ asset('assets/css/main.min.css') }}" rel="stylesheet" type="text/css">
 </head>
@@ -25,12 +26,21 @@
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
                     <li><a href="{{ url('/') }}">Retour site</a></li>
-                    <li><a href="{{ url('/admin/products') }}">Accueil Dashboard</a></li>
-                    <li><a href="{{ url('/admin/orders') }}">Historique des commandes</a></li>
+                    @if(Auth::check())
+                        <li><a href="{{ url('/admin/products') }}">Accueil Dashboard</a></li>
+                        <li><a href="{{ url('/admin/orders') }}">Historique des commandes</a></li>
+                    @endif
                 </ul>
 
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a href="{{ url('/auth/logout') }}">Se déconnecter</a></li>
+                    @if(!Auth::check())
+                        <li><a href="{{ url('/bag') }}">Mon panier</a></li>
+                        <li><a href="{{ url('/auth/login') }}">Se connecter</a></li>
+                        <li><a href="{{ url('/auth/register') }}">S'inscire</a></li>
+                    @else
+                        <li class="active"><a>Bienvenue {{{ isset(Auth::user()->name) ? Auth::user()->name : '' }}}</a></li>
+                        <li><a href="{{ url('/auth/logout') }}">Se déconnecter</a></li>
+                    @endif
                 </ul>
             </div>
         </div>
@@ -66,7 +76,8 @@
     </footer>
 
 
-    <script src="{{ asset('assets/js/jquery-1.11.3.min.js') }}"></script>
+    <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+    <script src="//code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
     <script src="{{ asset('assets/js/main.min.js') }}"></script>
 </body>
 </html>

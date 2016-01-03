@@ -71,3 +71,14 @@ test Akismet : viagra-test-123
 //////////////////////////////// GRUNT + SASS ////////////////////////////////
 $ sudo gem install -n /usr/local/bin sass
 $ grunt
+
+
+//////////////////////////////// DATE PROBLEMATIQUE ////////////////////////////////
+input de type 'date' envoi bien une valeur en bdd || Par contre, coté vue, ca affiche jj/mm/aaaa et non la vrai date
+solution =>
+    - changer l'input en type 'text'
+    - mettre en place un datePicker
+    - formater la date anvent l'envoi en bdd (->format('Y-m-d...'))
+
+
+
