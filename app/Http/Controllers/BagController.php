@@ -102,18 +102,32 @@ class BagController extends Controller
         $customer = Customer::whereRaw('username = ? and email = ?', [$customer_name, $customer_email])->first();
 
         if( !empty($customer) ) {
+            // on envois les datas en bdd :
             $order = Order::create($request->all());
 
+            // id du client :
             $customer_id = $customer->id;
-
             $order->customer_id = $customer_id;
+
+            // On va associer LA commande aux produits :
+            $bag_ids = Session::get("key.product_id"); // contient l'id des produits
+            $bag_nbs = Session::get("key.product_nb"); // contient la quantité des produits
+
             $order->save();
 
+            $newItems = [];
+            foreach($bag_ids as $key => $idProduct){
+                $quantity   = $bag_nbs[$key];
+                $newItems[] = [
+                    'order_id'      => $order->id,
+                    'product_id'    => $idProduct,
+                    'quantity'      => $quantity
+                ];
+            }
 
-            /////// On va associer LA commande aux produits :
-            $bag_ids = Session::get("key.product_id"); // contient l'id des produits
-            $order->products()->sync($bag_ids);
+            DB::table('order_product')->insert($newItems);
 
+            // on vide le panier :
             Session::flush();
 
             return redirect(url('/'))->with('message', 'Votre commande à bien été pris en compte !');

@@ -40,7 +40,7 @@
             <div class="col-sm-6">
                 <div class="form-group {{ $errors->has('price')? 'has-error' : '' }}">
                     {!! Form::label('price', 'Prix') !!}
-                    {!! Form::input('number', 'price', null, ['class' => 'form-control']) !!}
+                    {!! Form::input('number', 'price', null, ['class' => 'form-control', 'min' => '0']) !!}
                     {!! $errors->first('price', '<span class="help-block">:message</span>') !!}
                 </div>
             </div>

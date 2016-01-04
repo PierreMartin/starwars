@@ -2,16 +2,14 @@
 
 namespace App\Http\Controllers\Admin;
 
-
 use Illuminate\Http\Request;
-
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-
 use App\Product;
 use App\Order;
 use Form;
 use \Carbon\Carbon;
+use Illuminate\Support\Facades\DB;
 
 class OrderController extends Controller
 {
@@ -21,7 +19,7 @@ class OrderController extends Controller
     }
 
     public function index() {
-        $orders = Order::orderBy('commanded_at', 'desc')->with('customer', 'products')->paginate(10);
+        $orders         = Order::orderBy('commanded_at', 'desc')->with('customer', 'products')->paginate(10);
 
         return view('back.orders.index', compact('orders'));
     }

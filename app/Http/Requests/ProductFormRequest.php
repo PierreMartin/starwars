@@ -15,7 +15,8 @@ class ProductFormRequest extends Request
             'max'               => 'Ce champs ne dois pas dépasser 255 caractere',
             'size'              => 'Taille de l\'image trop grosse',
             'image'             => 'Seul les formats jpg, png, et gif sont autorisés',
-            'date'              => 'Ce champs dois être une date (15-10-2015)'
+            'date'              => 'Ce champs dois être une date (15-10-2015)',
+            'between'           => 'Le prix dois être supérieur à :min et inférieur à :max €'
         ];
     }
 
@@ -64,7 +65,7 @@ class ProductFormRequest extends Request
             'content'       => 'required',
             'image'         => 'image',
             'category_id'   => 'required',
-            'price'         => 'required|integer',
+            'price'         => 'required|integer|between:0,100000',
             'published_at'  => 'date'
         ];
     }

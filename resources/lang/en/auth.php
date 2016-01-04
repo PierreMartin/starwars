@@ -14,6 +14,6 @@ return [
     */
 
     'failed' => 'Email ou mot de passe incorrect',
-    'throttle' => 'Trop d\'ttente. veillez attendre :seconds secondes.',
+    'throttle' => 'Trop d\'attente. veillez attendre :seconds secondes.',
 
 ];

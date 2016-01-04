@@ -16,38 +16,45 @@ class Product extends Model
 
 
     // RELATION Products <-> Category  :
-    public function category() {
+    public function category()
+    {
         return $this->belongsTo('App\Category');
     }
 
     // RELATION Products <-> Tag  :
-    public function tags() {
+    public function tags()
+    {
         return $this->belongsToMany('App\Tag');
     }
 
     // RELATION Products <-> image :
-    public function image() {
+    public function image()
+    {
         return $this->belongsTo('App\Image');
     }
 
     // RELATION Products <-> Customer : // belongsToMany
-    public function customers() {
+    public function customers()
+    {
         return $this->belongsToMany('App\Customer');
     }
 
     // RELATION Products <-> Order : // belongsToMany
-    public function orders() {
-        return $this->belongsToMany('App\Order');
+    public function orders()
+    {
+        return $this->belongsToMany('App\Order')->withPivot('quantity');
     }
 
     // METHODE POUR FORMATER LA DATE AU MOMENT DE L'ENVOI DU FORMULAIRE (AJOUTER POST) :
-    public function setPublishedAtAttribute($value) {
+    public function setPublishedAtAttribute($value)
+    {
         $now = Carbon::now();
         $this->attributes['published_at'] = "$value {$now->hour}:{$now->minute}:{$now->second}";
     }
 
     // METHODE POUR COCHER LES CHECKBOXS AYANT DES TAGS :
-    public function hasTags($value) {
+    public function hasTags($value)
+    {
         foreach($this->tags as $tag) {
             if ($tag->id == $value) return true;
         }

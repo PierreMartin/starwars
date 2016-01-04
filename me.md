@@ -21,6 +21,7 @@ $ php artisan make:model Product
 $ php artisan make:model Tag
 $ php artisan make:model Customer
 $ php artisan make:model Order
+$ php artisan make:model Order_product // test
 
 
 //////////////////////////////// SEEDER ////////////////////////////////

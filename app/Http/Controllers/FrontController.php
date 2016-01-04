@@ -22,7 +22,6 @@ class FrontController extends Controller
 
     public function index()
     {
-        //$products = Product::where('status', true)->orderBy('published_at', 'desc')->with('category', 'tags', 'image')->paginate(10);
         $products = Product::where('status', true)->orderBy('published_at', 'desc')->with('category', 'tags', 'image')->paginate(10);
 
         return view('front.products.index', compact('products'));
@@ -40,15 +39,15 @@ class FrontController extends Controller
     //////////////////////////////// SHOW CATEGORIES / TAGS BY POSTS ////////////////////////////////
     public function showProductByCategory($id)
     {
-      //$products = Product::where('category_id', '=', $id)->paginate(10);
-        $products = Product::whereRaw("category_id = $id and status = true")->paginate(10);
+        $products = Product::whereRaw("category_id = $id and status = true")->orderBy('published_at', 'desc')->paginate(10);
+
         return view('front.categories.index', compact('products'));
     }
 
 
     public function showProductByTag($id)
     {
-        $products = Tag::find($id)->products; // TODO: Voir probleme de l'ajout d'un "where status(in table products) = true"
+        $products = Tag::find($id)->products->where('status', 1);
 
         return view('front.tags.index', compact('products'));
     }

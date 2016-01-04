@@ -46,7 +46,6 @@ class ProductController extends Controller
     public function create()
     {
         $categories = Category::lists('title', 'id');
-        //$tags       = Tag::lists('name', 'id');
         $tags       = Tag::get();
         $time       = Carbon::now()->format('d-m-Y');
 
@@ -63,13 +62,19 @@ class ProductController extends Controller
     {
         $product = Product::create($request->all());
 
-        // gestion du champ date : // 02-01-2016 (vue) => 2016-01-02 (bdd)
+        // gestion du champ date :
         $t      = Input::get('published_at');       // string
         $time   = Carbon::createFromFormat('d-m-Y', $t)->toDateTimeString();
         $product->published_at = $time;
 
         // gestion du checkbox boolean 'en ligne?' :
         $product->status = (empty($request->input('status')))? 0 : 1;
+
+        // gestion de l'extrait :
+        $content            = Input::get('content');
+        $contentReduct      = substr($content, 0, 40) .'...';
+        $product->abstract  = $contentReduct;
+
         $product->save();
 
         // envoi des tags a la bdd :
@@ -160,6 +165,12 @@ class ProductController extends Controller
 
         // gestion du checkbox boolean 'en ligne?' :
         $product->status = (empty($request->input('status')))? 0 : 1;
+
+        // gestion de l'extrait :
+        $content            = Input::get('content');
+        $contentReduct      = substr($content, 0, 40) .'...';
+        $product->abstract  = $contentReduct;
+
         $product->save();
 
         // envoi des tags a la bdd :

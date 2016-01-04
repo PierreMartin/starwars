@@ -15,12 +15,13 @@
         <tr class="info">
             <th>Date</th>
             <th>Client</th>
-            <th>Produits</th>
+            <th>Produits commandés</th>
             <th>Prix total</th>
             <th>Status de la commande</th>
         </tr>
         </thead>
         <tbody>
+
         @foreach($orders as $order)
             <tr>
                 <td>
@@ -35,9 +36,11 @@
 
                 <td>
                     @if($order->products)
-                        @foreach($order->products as $product)
-                            {{ $product->title }}<br>
-                        @endforeach
+                        <ul>
+                            @foreach($order->products as $product)
+                                <li>{{ $product->pivot->quantity }} - {{ $product->title }}</li>
+                            @endforeach
+                        </ul>
                     @endif
                 </td>
 

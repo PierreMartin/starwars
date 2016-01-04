@@ -33,9 +33,11 @@
 
                 <td>
                     @if($order->products)
-                        @foreach($order->products as $product)
-                            {{ $product->title }}<br>
-                        @endforeach
+                        <ul>
+                            @foreach($order->products as $product)
+                                <li>{{ $product->pivot->quantity }} - {{ $product->title }}</li>
+                            @endforeach
+                        </ul>
                     @endif
                 </td>
 
