@@ -7,6 +7,10 @@
     <link href="{{ asset('assets/css/bootstrap_dark.min.css') }}" rel="stylesheet" type="text/css">
     <link href="{{ asset('assets/css/front.min.css') }}" rel="stylesheet" type="text/css">
     <link href="{{ asset('assets/css/main.min.css') }}" rel="stylesheet" type="text/css">
+    <style>
+        html, body, header.home { height: 100%; }
+        #container_products { margin-top: 0; }
+    </style>
 </head>
 
 <body>
@@ -43,22 +47,31 @@
         </div>
     </nav>
 
-    <div class="container" id="container_products">
-        @if(Session::has('message'))
-            <blockquote>
-                <div class="alert alert-dismissible alert-success">{{ Session::get('message') }}</div>
-            </blockquote>
-        @endif
+    <header class="home">
+        <article class="container">
+            <h1><a href="{{ url('/') }}"><img src="{{ url(asset('assets/img/logo.png')) }}" alt="logo"></a></h1>
+            <p>Star Wars Collection</p>
 
-        @if(Session::has('error'))
-            <blockquote>
-                <div class="alert alert-dismissible alert-danger">{{ Session::get('error') }}</div>
-            </blockquote>
-        @endif
+            @if(Session::has('message'))
+                <blockquote>
+                    <div class="alert alert-dismissible alert-success">{{ Session::get('message') }}</div>
+                </blockquote>
+            @endif
 
-        <div class="row">
-            <div class="col-sm-12">
-                @yield('content')
+            @if(Session::has('error'))
+                <blockquote>
+                    <div class="alert alert-dismissible alert-danger">{{ Session::get('error') }}</div>
+                </blockquote>
+            @endif
+        </article>
+    </header>
+
+    <div id="container_page_home">
+        <div class="container" id="container_products">
+            <div class="row">
+                <div class="col-sm-12">
+                    @yield('content')
+                </div>
             </div>
         </div>
     </div>
@@ -70,8 +83,8 @@
                 <div class="col-md-12">
                     <ul class="list-unstyled navfooter">
                         <li><a href="{{ url('/') }}">Accueil</a></li>|{{--
-                                --}}<li><a href="{{ url('/terms') }}">Mentions légales</a></li>|{{--
-                                --}}<li><a href="{{ url('/contact') }}">Contact</a></li>
+                    --}}<li><a href="{{ url('/terms') }}">Mentions légales</a></li>|{{--
+                    --}}<li><a href="{{ url('/contact') }}">Contact</a></li>
                     </ul>
                 </div>
             </div>
@@ -85,9 +98,9 @@
         </div>
     </footer>
 
-
     <script src="{{ asset('assets/js/jquery-1.11.3.min.js') }}"></script>
     <script src="{{ asset('assets/js/jquery.easing.min.js') }}"></script>
     <script src="{{ asset('assets/js/front.min.js') }}"></script>
+    <script src="{{ asset('assets/js/home.min.js') }}"></script>
 </body>
 </html>

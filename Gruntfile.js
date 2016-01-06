@@ -23,10 +23,26 @@ module.exports = function(grunt) {
             options: {
                 mangle: false
             },
-            main_js: {
+            backo_js: {
                 files: {
-                    'public/assets/js/main.min.js': [
-                        'resources/assets/js/main.js',
+                    'public/assets/js/backo.min.js': [
+                        'resources/assets/js/backo.js',
+                        '!public/assets/js/*.min.js'
+                    ]
+                }
+            },
+            front_js: {
+                files: {
+                    'public/assets/js/front.min.js': [
+                        'resources/assets/js/front.js',
+                        '!public/assets/js/*.min.js'
+                    ]
+                }
+            },
+            home_js: {
+                files: {
+                    'public/assets/js/home.min.js': [
+                        'resources/assets/js/home.js',
                         '!public/assets/js/*.min.js'
                     ]
                 }

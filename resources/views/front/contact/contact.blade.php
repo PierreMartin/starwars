@@ -1,7 +1,7 @@
 @extends('layouts.front')
 
 @section('content')
-    <h2>Contactez-nous</h2>
+    <h1>Contactez-nous</h1>
 
     <div class="well">
         {!! Form::open(['url' => url('contact') ]) !!}

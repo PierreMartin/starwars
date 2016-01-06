@@ -1,43 +1,60 @@
 @extends('layouts.front')
 
 @section('content')
+    <h1>Les {{ $cat_product }}</h1>
+
     <div class="pagination">
         {!!$products->render()!!}
     </div>
 
-    @foreach($products as $product)
-        <h2><a href="{{ url('product', $product->id) }}">{{ $product->title }}</a></h2>
-        @if($product->image)
-            <a href="{{ url('product', $product->id) }}"><img src="{{ url(asset('uploads/preview/'.$product->image->uri_preview)) }}" alt="image_laravel"/></a>
-        @endif
-        <p>{{ $product->abstract }}</p>
-        <p>Produit ajouté le {{ \Carbon\Carbon::parse($product->published_at)->format('d/m/Y') }}</p>
-        <p>{{ $product->price }} €</p>
+    <div class="row">
+        @foreach($products as $product)
+            <div class="col-sm-6 product">
+                <section>
+                    @if($product->image)
+                        <a href="{{ url('product', $product->id) }}"><img src="{{ url(asset('uploads/preview/'.$product->image->uri_preview)) }}" alt="image_laravel"/></a>
+                    @else
+                        <a href="{{ url('product', $product->id) }}"><img src="http://lorempixel.com/440/300/?40547" alt="image_laravel"/></a>
+                    @endif
+                </section>
 
-        @if($product->category)
-            <p>categorie : <a href="{{ url('category', $product->category->id) }}">{{ $product->category->title }}</a></p>
-        @endif
+                <section class="content">
+                    <h2><a href="{{ url('product', $product->id) }}">{{ $product->title }}</a></h2>
 
-        @if($product->tags)
-            Tags associés :
-            <ul>
-                @foreach($product->tags as $tag)
-                    <li><a href="{{ url('tag', $tag->id) }}">{{$tag->name}}</a></li>
-                @endforeach
-            </ul>
-        @endif
+                    <p>{{ $product->abstract }}</p>
 
-        <hr>
-    @endforeach
+                    <div class="priceContainer">
+                        <strong class="price">{{ $product->price }} €</strong>
+                        <br>
+                        <a href="{{ url('product', $product->id) }}" class="btn btn-success btn-see-product">Voir le produit</a>
+                    </div>
+                    <hr>
+
+                    <div class="row infosContainer">
+                        <div class="col-md-7">
+                            @if($product->category)
+                                <p>Categorie : <a href="{{ url('categorie', $product->category->id) }}">{{ $product->category->title }}</a></p>
+                            @endif
+
+                            @if($product->tags !== 'null')
+                                Tags :
+                                @foreach($product->tags as $tag)
+                                    <a href="{{ url('tag', $tag->id) }}">#{{$tag->name}} </a>
+                                @endforeach
+                            @endif
+                        </div>
+                        <div class="col-md-4">
+                            <p>Produit ajouté le {{ \Carbon\Carbon::parse($product->published_at)->format('d/m/Y') }}</p>
+                        </div>
+                    </div>
+
+                </section>
+            </div>
+        @endforeach
+    </div>
+
 
     <div class="pagination">
         {!!$products->render()!!}
     </div>
 @endsection
-
-@section('footer')
-    <h2>Footer</h2>
-@endsection
-
-
-

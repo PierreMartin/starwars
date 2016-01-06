@@ -35,7 +35,7 @@
                 <ul class="nav navbar-nav navbar-right">
                     @if(!Auth::check())
                         <li><a href="{{ url('/bag') }}">Mon panier</a></li>
-                        <li><a href="{{ url('/auth/login') }}">Se connecter</a></li>
+                        <li><a href="{{ url('/auth/login') }}">Se connecter (administrateur)</a></li>
                         <li><a href="{{ url('/auth/register') }}">S'inscire</a></li>
                     @else
                         <li class="active"><a>Bienvenue {{{ isset(Auth::user()->name) ? Auth::user()->name : '' }}}</a></li>
@@ -70,14 +70,22 @@
 
     <footer>
         <div class="container">
-            <a href="{{ url('terms') }}">Mentions légales</a>
-            <a href="{{ url('contact') }}">Contact</a>
+            <div class="row">
+                <div class="col-md-12">
+                    <ul class="list-unstyled navfooter">
+                        <li><a href="{{ url('/') }}">Accueil</a></li>|{{--
+                                --}}<li><a href="{{ url('/terms') }}">Mentions légales</a></li>|{{--
+                                --}}<li><a href="{{ url('/contact') }}">Contact</a></li>
+                    </ul>
+                </div>
+            </div>
+            <hr>
+            Pierre Martin - <a href="http://pierredesigner.com/" target="_blank">pierredesigner.com</a>
         </div>
     </footer>
 
-
-    <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
-    <script src="//code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
-    <script src="{{ asset('assets/js/main.min.js') }}"></script>
+    <script src="{{ asset('assets/js/jquery-1.11.3.min.js') }}"></script>
+    <script src="{{ asset('assets/js/jquery-ui.min.js') }}"></script>
+    <script src="{{ asset('assets/js/backo.min.js') }}"></script>
 </body>
 </html>

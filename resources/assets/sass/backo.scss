@@ -1,26 +1,44 @@
 @import 'compass';
 
-/* DATE PICKER */ // TODO: créer des variables pour les couleurs
+$color_footer: #9f9f9f;
+$datePickerColor: #333333;
 
 .ui-datepicker {
   z-index: 99999 !important;
-  .ui-widget-header                       { background: none; background-color: #5B718A !important; border-color: #1E3237; color: #FFF; border-radius: 0px; font-weight: bold; }
-  .ui-widget-header .ui-corner-all        { border: none; border-radius: 0px !important; transition: 0.15s; -webkit-transition: 0.15s; }
-  .ui-widget-header .ui-state-hover       { background: none !important; }
-  .ui-widget-header .ui-state-hover span  { background-color: #fff; color: #1E3237; }
+  border-radius: 0 !important;
+  .ui-widget-header                  { background: none; border: none; color: $datePickerColor; @include border-radius(); font-weight: bold; }
+  .ui-widget-header .ui-corner-all   { border: none; border-radius: 0 !important; @include transition(); }
 
-  .ui-datepicker-prev, .ui-datepicker-next { width: 25px; height: 25px; }
-  .ui-datepicker-prev { margin: 3px 0 0 3px; }
-  .ui-datepicker-next { margin: 3px 3px 0 0; }
-  .ui-datepicker-prev span, .ui-datepicker-next span { left: 60%; top: 45%; }
+  .ui-widget-header .ui-state-hover                     { background: none !important; }
+  .ui-datepicker-prev:hover, .ui-datepicker-next:hover  { opacity: 0.3; }
+
+  .ui-datepicker-prev, .ui-datepicker-next            { width: 25px; height: 25px; }
+  .ui-datepicker-prev                                 { margin: 2px 0 0 4px; }
+  .ui-datepicker-next                                 { margin: 2px 4px 0 0; }
+  .ui-datepicker-prev span, .ui-datepicker-next span  { left: 60%; top: 45%; }
 }
 
 .ui-widget-content {
-  background-color: #F2F2F2;
-  .ui-datepicker-calendar                          { background-color: #5B718A; }
-  .ui-datepicker-calendar .ui-state-default        { background: none; color: #fff; border: none; text-align: center; transition: 0.15s; -webkit-transition: 0.15s; }
-  .ui-datepicker-calendar .ui-state-default:hover  { background: #3C4754; color: white; }
-  .ui-datepicker-calendar .ui-state-active         { background-color: #3C4754 !important; }
+  background: #fff !important;
+  .ui-datepicker-calendar .ui-state-default        { background: none; color: $datePickerColor; border: none; text-align: center; @include border-radius(); transition: 0.15s; -webkit-transition: 0.15s; }
+  .ui-datepicker-calendar .ui-state-default:hover  { background: $datePickerColor; color: #fff; }
+  .ui-datepicker-calendar .ui-state-active         { background-color: $datePickerColor !important; color: #fff; }
 }
 
+footer {
+  border-top: 1px solid $color_footer;
+  background-color: #fff;
+  text-align: center;
+  padding: 30px 0;
+  color: $color_footer;
+  a { color: $color_footer; }
+
+  ul.navfooter li {
+    display: inline-block;
+
+    a { margin: 0 20px 0 20px; }
+  }
+}
+
+.image_preview { margin-bottom: 10px; max-width: 320px; }
 

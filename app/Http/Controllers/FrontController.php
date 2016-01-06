@@ -41,7 +41,13 @@ class FrontController extends Controller
     {
         $products = Product::whereRaw("category_id = $id and status = true")->orderBy('published_at', 'desc')->paginate(10);
 
-        return view('front.categories.index', compact('products'));
+        if($id == 1){
+            $cat_product = "sabres lasers";
+        } elseif($id == 2) {
+            $cat_product = "casques";
+        }
+
+        return view('front.categories.index', compact('products', 'cat_product'));
     }
 
 

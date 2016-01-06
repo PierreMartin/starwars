@@ -86,23 +86,31 @@ class ProductController extends Controller
         if ( Input::hasFile('image') ) {
             $destinationPath1   = 'uploads/main/';
             $destinationPath2   = 'uploads/preview/';
+            $destinationPath3   = 'uploads/mini/';
             $extension          = Input::file('image')->getClientOriginalExtension();
             $fileName1          = Str::random(10) . Carbon::now()->timestamp . '.'.$extension;
             $fileName2          = Str::random(10) . Carbon::now()->timestamp . '.'.$extension;
+            $fileName3          = Str::random(10) . Carbon::now()->timestamp . '.'.$extension;
 
             \Intervention\Image\Facades\Image::make(Input::file('image')->getRealPath())
                 // big
-                ->fit(600, 450)
+                ->fit(970, 450)
                 ->save($destinationPath1 . $fileName1)
                 // preview
-                ->fit(180, 180)
-                ->save($destinationPath2 . $fileName2);
+                ->fit(550, 375)
+                ->save($destinationPath2 . $fileName2)
+                // mini (resize only the width of the image)
+                ->resize(100, null, function ($constraint) {
+                    $constraint->aspectRatio();
+                })
+                ->save($destinationPath3 . $fileName3);
 
 
             // on insere un champ 'uri' + 'uri_preview' dans la bdd 'images' :
             $image              = Image::create($request->all());
             $image->uri         = $fileName1;
             $image->uri_preview = $fileName2;
+            $image->uri_mini    = $fileName3;
             $image->status      = 1; // 1 pour validé
             $image->save();
 
@@ -182,23 +190,31 @@ class ProductController extends Controller
         if ( Input::hasFile('image') ) {
             $destinationPath1   = 'uploads/main/';
             $destinationPath2   = 'uploads/preview/';
+            $destinationPath3   = 'uploads/mini/';
             $extension          = Input::file('image')->getClientOriginalExtension();
             $fileName1          = Str::random(10) . Carbon::now()->timestamp . '.'.$extension;
             $fileName2          = Str::random(10) . Carbon::now()->timestamp . '.'.$extension;
+            $fileName3          = Str::random(10) . Carbon::now()->timestamp . '.'.$extension;
 
             \Intervention\Image\Facades\Image::make(Input::file('image')->getRealPath())
                 // big
-                ->fit(600, 450)
+                ->fit(970, 450)
                 ->save($destinationPath1 . $fileName1)
                 // preview
-                ->fit(180, 180)
-                ->save($destinationPath2 . $fileName2);
+                ->fit(550, 375)
+                ->save($destinationPath2 . $fileName2)
+                // mini (resize only the width of the image)
+                ->resize(100, null, function ($constraint) {
+                    $constraint->aspectRatio();
+                })
+                ->save($destinationPath3 . $fileName3);
 
 
             // on insere un champ 'uri' + 'uri_preview' dans la bdd 'images' :
             $image              = Image::create($request->all());
             $image->uri         = $fileName1;
             $image->uri_preview = $fileName2;
+            $image->uri_mini    = $fileName3;
             $image->status      = 1; // 1 pour validé
             $image->save();
 

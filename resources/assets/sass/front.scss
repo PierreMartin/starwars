@@ -1,2 +1,115 @@
 @import 'compass';
 
+$color_contents: #2A2A2A;
+$color_footer: #9f9f9f;
+
+body { padding-bottom: 0 !important; }
+#container_page_home { overflow: hidden; }
+
+header.home {
+  background: url(../img/bg-header.jpg) no-repeat fixed;
+  background-size: cover;
+  text-align: center;
+
+  article {
+    padding-top: 150px;
+
+    p {
+      color: #fdf6e7;
+      font-size: 1.9em;
+      line-height: 1.6em;
+    }
+  }
+}
+
+#container_products {
+  margin-top: 60px;
+
+  /* //////////////// PAGE LISTE DES PRODUITS ////////////////// */
+  .product {
+    /*float: none !important;*/
+    display: inline-block;
+    width: 47% !important;
+    vertical-align: top;
+    background-color: $color_contents;
+    margin: 0 10px 20px 10px;
+    padding: 0;
+    position: relative;
+
+    img { width: 100%; }
+  }
+  .product:nth-child(even) {
+    float: right;
+  }
+  .product:nth-child(odd) {
+    float: left;
+  }
+
+  /* //////////////// CONTENT DES PRODUITS - COMMUNS A TOUTES LES PAGES ////////////////// */
+  section.content {
+    padding: 0 20px;
+    margin-bottom: 15px;
+    .priceContainer {
+      text-align: center;
+
+      .price            { color: #F3B812; font-size: 20px; }
+      .btn-see-product  { margin-top: 12px; }
+    }
+    .infosContainer {
+      font-size: 0.9375em;
+      color: #999999;
+      p { margin: 0; }
+
+    }
+
+  }
+
+  /* //////////////// PAGE SINGLE DU PRODUIT ////////////////// */
+  .product_single {
+    background-color: $color_contents;
+    padding: 0;
+    margin-bottom: 40px;
+
+    img { width: 100%; }
+
+    section.content_imagefull {
+      height: 380px;
+      overflow: hidden;
+    }
+    .priceContainerSingle {
+      text-align: center;
+      margin: 30px 0;
+      .price { font-size: 30px; }
+    }
+
+  }
+}
+
+.content_imagemini { height: 65px; width: 100px; overflow: hidden; }
+
+footer {
+  background-color: $color_contents;
+  text-align: center;
+  padding: 30px 0;
+  color: $color_footer;
+  a { color: $color_footer; }
+
+  ul.navfooter li {
+    display: inline-block;
+
+    a { margin: 0 20px 0 20px; }
+  }
+  .list_tags { display: inline-block; margin: 0 2px; }
+}
+
+.empty-page { padding: 200px 0; }
+
+
+/* ---------------------- MEDIA QUERY ---------------------- */
+@media screen and (max-width: 767px) {
+  #container_products .product {
+    width: 95% !important;
+    float: none !important;
+    padding: 10px;
+  }
+}

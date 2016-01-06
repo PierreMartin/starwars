@@ -17,6 +17,7 @@ class CreateImagesTable extends Migration
             $table->string('name');
             $table->string('uri');
             $table->string('uri_preview');
+            $table->string('uri_mini');
             $table->boolean('status')->default(false);
             $table->dateTime('published_at');
             $table->timestamps();

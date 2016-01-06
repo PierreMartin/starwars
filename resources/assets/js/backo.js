@@ -1,6 +1,6 @@
 $(document).ready(function() {
 
-    // POP-IN - BOUTON 'SUPRIMER' :
+    //////////////// POP-IN - BOUTON 'SUPRIMER' : ////////////////
     $(".btn-modal").click(function() {
         $(this).parent().find('.modal').fadeIn(500).css('background-color', 'rgba(26, 36, 47, 0.75)');
     });
@@ -10,7 +10,7 @@ $(document).ready(function() {
     });
 
 
-    // DATEPICKER :
+    //////////////// DATEPICKER : ////////////////
     $(".datepicker").datepicker({
         dateFormat: "dd-mm-yy",
         closeText: "Fermer",
@@ -29,8 +29,14 @@ $(document).ready(function() {
         yearSuffix: ""
     });
 
+    //////////////// MENU MOBILE ////////////////
+    $(".navbar-toggle").click(function () {
+        $(".navbar-collapse").slideToggle(300, "easeInOutExpo" );
+    });
 
 });
+
+
 
 
 

@@ -1,42 +1,56 @@
 @extends('layouts.front')
 
 @section('content')
-{{--
-    <div class="pagination">
-        {!!$products->render()!!}
+    <h1>Les tags</h1>
+
+    <div class="row">
+        @forelse($products as $product)
+            <div class="col-sm-6 product">
+                <section>
+                    @if($product->image)
+                        <a href="{{ url('product', $product->id) }}"><img src="{{ url(asset('uploads/preview/'.$product->image->uri_preview)) }}" alt="image_laravel"/></a>
+                    @else
+                        <a href="{{ url('product', $product->id) }}"><img src="http://lorempixel.com/440/300/?40547" alt="image_laravel"/></a>
+                    @endif
+                </section>
+
+                <section class="content">
+                    <h2><a href="{{ url('product', $product->id) }}">{{ $product->title }}</a></h2>
+
+                    <p>{{ $product->abstract }}</p>
+
+                    <div class="priceContainer">
+                        <strong class="price">{{ $product->price }} €</strong>
+                        <br>
+                        <a href="{{ url('product', $product->id) }}" class="btn btn-success btn-see-product">Voir le produit</a>
+                    </div>
+                    <hr>
+
+                    <div class="row infosContainer">
+                        <div class="col-md-7">
+                            @if($product->category)
+                                <p>Categorie : <a href="{{ url('categorie', $product->category->id) }}">{{ $product->category->title }}</a></p>
+                            @endif
+
+                            @if($product->tags !== 'null')
+                                Tags :
+                                @foreach($product->tags as $tag)
+                                    <a href="{{ url('tag', $tag->id) }}">#{{$tag->name}} </a>
+                                @endforeach
+                            @endif
+                        </div>
+                        <div class="col-md-4">
+                            <p>Produit ajouté le {{ \Carbon\Carbon::parse($product->published_at)->format('d/m/Y') }}</p>
+                        </div>
+                    </div>
+
+                </section>
+            </div>
+        @empty
+            <p class="text-center empty-page">Il n'y a pas de produit pour ce tag</p>
+        @endforelse
     </div>
---}}
 
-    @foreach($products as $product)
-        <h2><a href="{{ url('product', $product->id) }}">{{ $product->title }}</a></h2>
-        @if($product->image)
-            <a href="{{ url('product', $product->id) }}"><img src="{{ url(asset('uploads/preview/'.$product->image->uri_preview)) }}" alt="image_laravel"/></a>
-        @endif
-        <p>{{ $product->abstract }}</p>
-        <p>Produit ajouté le {{ \Carbon\Carbon::parse($product->published_at)->format('d/m/Y') }}</p>
-        <p>{{ $product->price }} €</p>
-
-        @if($product->category)
-            <p>categorie : <a href="{{ url('category', $product->category->id) }}">{{ $product->category->title }}</a></p>
-        @endif
-
-        @if($product->tags)
-            Tags associés :
-            <ul>
-                @foreach($product->tags as $tag)
-                    <li><a href="{{ url('tag', $tag->id) }}">{{$tag->name}}</a></li>
-                @endforeach
-            </ul>
-        @endif
-
-        <hr>
-    @endforeach
-
-{{--
-    <div class="pagination">
-        {!!$products->render()!!}
-    </div>
---}}
 @endsection
 
 @section('footer')
