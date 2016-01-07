@@ -6,6 +6,9 @@ use App\Http\Requests\Request;
 
 class ContactFormRequest extends Request
 {
+    /**
+     * @return array
+     */
     public function messages()
     {
         return [

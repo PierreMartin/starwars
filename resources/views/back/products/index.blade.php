@@ -1,6 +1,5 @@
 @extends('layouts.back')
 
-
 @section('content')
     <div class="add_post">
         <a href="{{url('admin/products/create')}}" class="btn btn-primary">Ajouter un produit</a>
@@ -13,8 +12,8 @@
     <table class="table table-striped table-hover ">
         <thead>
         <tr class="info">
-            <th>titre</th>
-            <th>Extrait</th>
+            <th>Produit</th>
+            <th>Description (extrait)</th>
             <th>Catégorie</th>
             <th>Tag(s)</th>
             <th>Créé le</th>
@@ -89,4 +88,3 @@
         {!!$products->render()!!}
     </div>
 @endsection
-

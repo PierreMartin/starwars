@@ -13,13 +13,21 @@ class Order extends Model
      */
     protected $fillable = ['total_price', 'commanded_at', 'status', 'customer_id'];
 
-    // RELATION Products <-> Category  :
+    /**
+     * @return $this
+     *
+     * RELATION Products <-> Category  :
+     */
     public function products()
     {
         return $this->belongsToMany('App\Product')->withPivot('quantity');
     }
 
-    // RELATION Order <-> Customer  :
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     *
+     * RELATION Order <-> Customer  :
+     */
     public function customer()
     {
         return $this->belongsTo('App\Customer');

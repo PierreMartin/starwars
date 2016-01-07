@@ -13,7 +13,11 @@ class Tag extends Model
      */
     protected $fillable = ['name'];
 
-    // RELATION  Products <-> Tag :
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     *
+     * RELATION  Products <-> Tag :
+     */
     public function products()
     {
         return $this->belongsToMany('App\Product');

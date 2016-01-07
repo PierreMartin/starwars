@@ -9,7 +9,7 @@
                 <thead>
                 <tr class="">
                     <th>Image</th>
-                    <th>Nom</th>
+                    <th>Produit</th>
                     <th>Quantité</th>
                     <th>Prix unitaire</th>
                     <th>Prix total par produit</th>
@@ -71,14 +71,12 @@
                 </tbody>
             </table>
 
-            <a href="{{url('bag-confirm')}}" class="btn btn-primary">Terminé la commande</a>
+            <a href="{{url('bag-confirm')}}" class="btn btn-primary">Terminer la commande</a>
             <a class="btn btn-warning" href="{{ route('bag-delete') }}">Vider le panier</a>
 
         </div>
     @else
         <p class="text-center empty-page">Votre panier est vide</p>
     @endif
-
-
 
 @endsection

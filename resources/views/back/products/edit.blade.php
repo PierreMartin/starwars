@@ -1,6 +1,5 @@
 @extends('layouts.back')
 
-
 @section('content')
     <h1>Modifier un produit</h1>
 
@@ -77,6 +76,3 @@
         {!! Form::close() !!}
     </div>
 @endsection
-
-
-

@@ -6,7 +6,9 @@ use App\Http\Requests\Request;
 
 class LoginCustomerFormRequest extends Request
 {
-
+    /**
+     * @return array
+     */
     public function messages()
     {
         return [

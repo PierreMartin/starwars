@@ -7,7 +7,6 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Requests\ProductFormRequest; // add
 use App\Http\Controllers\Controller;
-
 use App\Product;
 use App\Image;
 use App\Tag;
@@ -20,7 +19,9 @@ use Illuminate\Support\Str;
 
 class ProductController extends Controller
 {
-
+    /**
+     * authentification
+     */
     public function __construct()
     {
         $this->middleware('auth');
@@ -78,12 +79,11 @@ class ProductController extends Controller
         $product->save();
 
         // envoi des tags a la bdd :
-        if( !empty($request->input('tags')) ) {
+        if (!empty($request->input('tags'))) {
             $product->tags()->sync($request->get('tags'));
         }
 
-
-        if ( Input::hasFile('image') ) {
+        if (Input::hasFile('image')) {
             $destinationPath1   = 'uploads/main/';
             $destinationPath2   = 'uploads/preview/';
             $destinationPath3   = 'uploads/mini/';
@@ -105,7 +105,6 @@ class ProductController extends Controller
                 })
                 ->save($destinationPath3 . $fileName3);
 
-
             // on insere un champ 'uri' + 'uri_preview' dans la bdd 'images' :
             $image              = Image::create($request->all());
             $image->uri         = $fileName1;
@@ -120,8 +119,7 @@ class ProductController extends Controller
             $product->save();
         }
 
-        return redirect(route('admin.products.edit', $product))->with('message', 'Le produit à bien été créer ! Vous pouvez maitenant le modifier');
-
+        return redirect(route('admin.products.edit', $product))->with('message', 'Le produit a bien été créé ! Vous pouvez maitenant le modifier');
     }
 
     /**
@@ -146,9 +144,8 @@ class ProductController extends Controller
         $product        = Product::findOrFail($id);
         $categories     = Category::lists('title', 'id');
         $tags           = Tag::get();
-
         $timeFromInput  = $product->published_at;
-        $time = Carbon::parse($timeFromInput)->format('d-m-Y');
+        $time           = Carbon::parse($timeFromInput)->format('d-m-Y');
 
         return view('back.products.edit', compact('product', 'categories', 'tags', 'time'));
     }
@@ -163,7 +160,6 @@ class ProductController extends Controller
     public function update(ProductFormRequest $request, $id)
     {
         $product = Product::findOrFail($id);
-
         $product->update($request->all());
 
         // gestion du champ date : // 02-01-2016 (vue) => 2016-01-02 (bdd)
@@ -182,12 +178,11 @@ class ProductController extends Controller
         $product->save();
 
         // envoi des tags a la bdd :
-        if( !empty($request->input('tags')) ) {
+        if (!empty($request->input('tags'))) {
             $product->tags()->sync($request->get('tags'));
         }
 
-
-        if ( Input::hasFile('image') ) {
+        if (Input::hasFile('image')) {
             $destinationPath1   = 'uploads/main/';
             $destinationPath2   = 'uploads/preview/';
             $destinationPath3   = 'uploads/mini/';
@@ -209,7 +204,6 @@ class ProductController extends Controller
                 })
                 ->save($destinationPath3 . $fileName3);
 
-
             // on insere un champ 'uri' + 'uri_preview' dans la bdd 'images' :
             $image              = Image::create($request->all());
             $image->uri         = $fileName1;
@@ -224,7 +218,7 @@ class ProductController extends Controller
             $product->save();
         }
 
-        return redirect(route('admin.products.edit', $id))->with('message', 'Le produit à bien été modifier !');
+        return redirect(route('admin.products.edit', $id))->with('message', 'Le produit a bien été modifié !');
     }
 
     /**

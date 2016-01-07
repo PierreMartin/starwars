@@ -35,7 +35,7 @@
                 <ul class="nav navbar-nav navbar-right">
                     @if(!Auth::check())
                         <li><a href="{{ url('/bag') }}">Mon panier</a></li>
-                        <li><a href="{{ url('/auth/login') }}">Se connecter (administrateur)</a></li>
+                        <li><a href="{{ url('/auth/login') }}">Se connecter (admin)</a></li>
                         <li><a href="{{ url('/auth/register') }}">S'inscire</a></li>
                     @else
                         <li class="active"><a>Bienvenue {{{ isset(Auth::user()->name) ? Auth::user()->name : '' }}}</a></li>

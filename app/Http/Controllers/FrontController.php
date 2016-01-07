@@ -17,7 +17,9 @@ use Mail;
 
 class FrontController extends Controller
 {
-
+    /**
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function index()
     {
         $products = Product::where('status', true)->orderBy('published_at', 'desc')->with('category', 'tags', 'image')->paginate(10);
@@ -25,6 +27,10 @@ class FrontController extends Controller
         return view('front.products.index', compact('products'));
     }
 
+    /**
+     * @param $id
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function show($id)
     {
         $product = Product::where('id', $id)->firstOrFail();
@@ -32,7 +38,12 @@ class FrontController extends Controller
         return view('front.products.show', compact('product'));
     }
 
-    //////////////////////////////// SHOW CATEGORIES / TAGS BY POSTS ////////////////////////////////
+    /**
+     * @param $id
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     *
+     * SHOW PRODUCTS BY CATEGORIES
+     */
     public function showProductByCategory($id)
     {
         $products = Product::whereRaw("category_id = $id and status = true")->orderBy('published_at', 'desc')->paginate(10);
@@ -46,6 +57,12 @@ class FrontController extends Controller
         return view('front.categories.index', compact('products', 'cat_product'));
     }
 
+    /**
+     * @param $id
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     *
+     * SHOW PRODUCTS BY TAGS
+     */
     public function showProductByTag($id)
     {
         $products = Tag::find($id)->products->where('status', 1);
@@ -53,12 +70,22 @@ class FrontController extends Controller
         return view('front.tags.index', compact('products'));
     }
 
-    //////////////////////////////// PAGE CONTACT ////////////////////////////////
+    /**
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     *
+     * PAGE CONTACT
+     */
     public function showContact()
     {
         return view('front.contact.contact');
     }
 
+    /**
+     * @param ContactFormRequest $request
+     * @return \Illuminate\Http\RedirectResponse
+     *
+     * PAGE CONTACT - SEND MESSAGE
+     */
     public function sendContact(ContactFormRequest $request)
     {
         $messageMain    = $request->input('message');
@@ -79,7 +106,11 @@ class FrontController extends Controller
         }
     }
 
-    //////////////////////////////// PAGE MENTIONS LEGALS ////////////////////////////////
+    /**
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     *
+     * PAGE MENTIONS LEGALS
+     */
     public function showTerms()
     {
         return view('front.terms.terms');

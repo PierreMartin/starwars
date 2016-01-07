@@ -13,11 +13,14 @@ class Category extends Model
      */
     protected $fillable = ['title', 'description'];
 
-    // RELATION Products <-> Category  :
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     *
+     * RELATION Products <-> Category  :
+     */
     public function products()
     {
         return $this->hasMany('App\Product');
     }
-
 
 }

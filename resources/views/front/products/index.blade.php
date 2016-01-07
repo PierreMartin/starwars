@@ -51,7 +51,6 @@
         @endforeach
     </div>
 
-
     <div class="pagination">
         {!!$products->render()!!}
     </div>

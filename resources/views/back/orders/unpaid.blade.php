@@ -1,6 +1,5 @@
 @extends('layouts.back')
 
-
 @section('content')
     <h2>Historique des commandes non payés</h2>
 
@@ -12,7 +11,7 @@
         <thead>
         <tr class="info">
             <th>Date</th>
-            <th>Client</th>
+            <th>Clients</th>
             <th>Produits</th>
             <th>Prix total</th>
             <th>Status de la commande</th>
@@ -63,4 +62,3 @@
         {!!$orders->render()!!}
     </div>
 @endsection
-

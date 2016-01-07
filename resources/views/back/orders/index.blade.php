@@ -1,6 +1,5 @@
 @extends('layouts.back')
 
-
 @section('content')
     <h2>Historique des commandes</h2>
     <a href="{{ url('/admin/unpaid') }}">Voir les commandes non payés</a>
@@ -14,7 +13,7 @@
         <thead>
         <tr class="info">
             <th>Date</th>
-            <th>Client</th>
+            <th>Clients</th>
             <th>Produits commandés</th>
             <th>Prix total</th>
             <th>Status de la commande</th>
@@ -66,4 +65,3 @@
         {!!$orders->render()!!}
     </div>
 @endsection
-

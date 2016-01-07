@@ -1,7 +1,7 @@
 @extends('layouts.front')
 
 @section('content')
-    <h1>Fiche détail du produit</h1>
+    <h1>Détail du produit</h1>
 
     <div class="row">
         <div class="col-sm-12 product_single">
@@ -43,7 +43,7 @@
                 <div class="row infosContainer">
                     <div class="col-md-7">
                         @if($product->category)
-                            <p>categorie : <a href="{{ url('categorie', $product->category->id) }}">{{ $product->category->title }}</a></p>
+                            <p>Categorie : <a href="{{ url('categorie', $product->category->id) }}">{{ $product->category->title }}</a></p>
                         @endif
 
                         @if($product->tags !== 'null')
@@ -59,10 +59,6 @@
                 </div>
             </section>
 
-
         </div>
     </div>
-
-
-
 @endsection

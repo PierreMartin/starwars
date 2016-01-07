@@ -6,7 +6,9 @@ use App\Http\Requests\Request;
 
 class ProductFormRequest extends Request
 {
-
+    /**
+     * @return array
+     */
     public function messages()
     {
         return [
@@ -38,7 +40,6 @@ class ProductFormRequest extends Request
      */
     public function rules()
     {
-
         // htmlentities - title :
         $title = $this->all();
         $title['title'] = filter_var($title['title'], FILTER_SANITIZE_STRING);
@@ -58,7 +59,6 @@ class ProductFormRequest extends Request
         $date = $this->all();
         $date['published_at'] = filter_var($date['published_at'], FILTER_SANITIZE_STRING);
         $this->replace($date);
-
 
         return [
             'title'         => 'required|max:255',

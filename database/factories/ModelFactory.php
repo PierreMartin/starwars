@@ -22,9 +22,6 @@ $factory->define(App\User::class, function (Faker\Generator $faker) {
 });
 */
 
-
-
-
 $factory->define(App\Image::class, function (Faker\Generator $faker) {
     return [
         'name'          => $faker->word(1).'jpg',
@@ -76,7 +73,3 @@ $factory->define(App\Order::class, function (Faker\Generator $faker) {
         'customer_id'       => rand(1,3)
     ];
 });
-
-
-
-

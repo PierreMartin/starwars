@@ -39,7 +39,7 @@
                                 Mon panier
                             </a>
                         </li>
-                        <li><a href="{{ url('/auth/login') }}">Se connecter (administrateur)</a></li>
+                        <li><a href="{{ url('/auth/login') }}">Se connecter (admin)</a></li>
                         <li><a href="{{ url('/auth/register') }}">S'inscire</a></li>
                     @else
                         <li><a href="{{ url('/admin/products') }}">Retour Dashboard</a></li>

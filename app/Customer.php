@@ -13,7 +13,11 @@ class Customer extends Model
      */
     protected $fillable = ['username', 'email', 'number_card'];
 
-    // RELATION Products <-> Category  :
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     *
+     * RELATION Products <-> Customer  :
+     */
     public function products()
     {
         return $this->belongsToMany('App\Product');

@@ -13,7 +13,11 @@ class Image extends Model
      */
     protected $fillable = ['name', 'uri', 'uri_preview', 'uri_mini', 'status', 'published_at'];
 
-    // RELATION Products <-> Image :
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     *
+     * RELATION Products <-> Image :
+     */
     public function products()
     {
         return $this->hasMany('App\Product');

@@ -17,6 +17,5 @@ class UserTableSeeder extends Seeder
                 'email'    => 'pierre@gmail.com',
                 'password' => Hash::make('1111'),
             ]);
-
     }
 }
