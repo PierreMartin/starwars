@@ -3,11 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
 use App\Http\Requests;
 use App\Http\Requests\ContactFormRequest; // add
 use App\Http\Controllers\Controller;
-
 use App\Product;
 use App\Tag;
 use App\Category;
@@ -27,7 +25,6 @@ class FrontController extends Controller
         return view('front.products.index', compact('products'));
     }
 
-
     public function show($id)
     {
         $product = Product::where('id', $id)->firstOrFail();
@@ -35,21 +32,19 @@ class FrontController extends Controller
         return view('front.products.show', compact('product'));
     }
 
-
     //////////////////////////////// SHOW CATEGORIES / TAGS BY POSTS ////////////////////////////////
     public function showProductByCategory($id)
     {
         $products = Product::whereRaw("category_id = $id and status = true")->orderBy('published_at', 'desc')->paginate(10);
 
-        if($id == 1){
+        if ($id == 1) {
             $cat_product = "sabres lasers";
-        } elseif($id == 2) {
+        } elseif ($id == 2) {
             $cat_product = "casques";
         }
 
         return view('front.categories.index', compact('products', 'cat_product'));
     }
-
 
     public function showProductByTag($id)
     {
@@ -57,7 +52,6 @@ class FrontController extends Controller
 
         return view('front.tags.index', compact('products'));
     }
-
 
     //////////////////////////////// PAGE CONTACT ////////////////////////////////
     public function showContact()
@@ -83,8 +77,6 @@ class FrontController extends Controller
 
             return redirect()->back()->with('message', 'Message envoyé');
         }
-
-
     }
 
     //////////////////////////////// PAGE MENTIONS LEGALS ////////////////////////////////
@@ -92,6 +84,5 @@ class FrontController extends Controller
     {
         return view('front.terms.terms');
     }
-
 
 }

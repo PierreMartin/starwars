@@ -10,7 +10,7 @@
                 @if($product->image)
                     <img src="{{ url(asset('uploads/main/'.$product->image->uri)) }}" alt="image_laravel"/>
                 @else
-                    <img src="http://lorempixel.com/440/300/?40547" alt="image_laravel"/>
+                    <img src="{{ url(asset('assets/img/default_main.jpg')) }}" alt="image_laravel"/>
                 @endif
             </section>
 

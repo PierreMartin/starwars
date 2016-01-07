@@ -5,7 +5,7 @@
     <title>@yield('title')</title>
 
     <link href="{{ asset('assets/css/bootstrap_lumen.min.css') }}" rel="stylesheet" type="text/css">
-    <link href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css" rel="stylesheet" type="text/css">
+    <link href="{{ asset('assets/css/jquery-ui.css') }}" rel="stylesheet" type="text/css">
     <link href="{{ asset('assets/css/backo.min.css') }}" rel="stylesheet" type="text/css">
     <link href="{{ asset('assets/css/main.min.css') }}" rel="stylesheet" type="text/css">
 </head>

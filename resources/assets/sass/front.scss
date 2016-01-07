@@ -73,7 +73,7 @@ header.home {
     img { width: 100%; }
 
     section.content_imagefull {
-      height: 380px;
+      height: 450px;
       overflow: hidden;
     }
     .priceContainerSingle {
@@ -103,7 +103,7 @@ footer {
 }
 
 .empty-page { padding: 200px 0; }
-
+.fa-cart-arrow-down { color: #F39C12; font-size: 18px !important; margin-right: 10px; }
 
 /* ---------------------- MEDIA QUERY ---------------------- */
 @media screen and (max-width: 767px) {

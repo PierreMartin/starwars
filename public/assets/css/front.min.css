@@ -75,7 +75,7 @@ header.home article p {
   width: 100%;
 }
 #container_products .product_single section.content_imagefull {
-  height: 380px;
+  height: 450px;
   overflow: hidden;
 }
 #container_products .product_single .priceContainerSingle {
@@ -114,6 +114,12 @@ footer .list_tags {
 
 .empty-page {
   padding: 200px 0;
+}
+
+.fa-cart-arrow-down {
+  color: #F39C12;
+  font-size: 18px !important;
+  margin-right: 10px;
 }
 
 /* ---------------------- MEDIA QUERY ---------------------- */

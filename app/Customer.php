@@ -11,7 +11,7 @@ class Customer extends Model
      *
      * @var array
      */
-    protected $fillable = ['username', 'email'];
+    protected $fillable = ['username', 'email', 'number_card'];
 
     // RELATION Products <-> Category  :
     public function products()

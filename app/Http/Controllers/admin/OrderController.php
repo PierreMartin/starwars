@@ -19,7 +19,7 @@ class OrderController extends Controller
     }
 
     public function index() {
-        $orders         = Order::orderBy('commanded_at', 'desc')->with('customer', 'products')->paginate(10);
+        $orders = Order::orderBy('commanded_at', 'desc')->with('customer', 'products')->paginate(10);
 
         return view('back.orders.index', compact('orders'));
     }

@@ -2,7 +2,7 @@
 
 
 @section('content')
-    <h1>Creer un nouveau porduit</h1>
+    <h1>Ajouter un nouveau produit</h1>
 
     <div class="well">
         {!! Form::open(['url' => route('admin.products.store'), 'method' => 'POST', 'files' => true ]) !!}
@@ -46,7 +46,7 @@
             </div>
             <div class="col-sm-6">
                 <div class="form-group {{ $errors->has('category_id')? 'has-error' : '' }}">
-                    {!! Form::label('category_id', 'Catégories associés') !!}
+                    {!! Form::label('category_id', 'Catégorie associée') !!}
                     {!! Form::select('category_id', $categories, null, ['class' => 'form-control']) !!}
                     {!! $errors->first('category_id', '<span class="help-block">:message</span>') !!}
                 </div>

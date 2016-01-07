@@ -23,7 +23,13 @@
                                 <div class="content_imagemini">
                                     <a href="{{ url('product', $product->id) }}"><img src="{{ url(asset('uploads/mini/'.$product->image->uri_mini)) }}" alt="image_laravel" width="100" /></a>
                                 </div>
+                            @else
+                                <div class="content_imagemini">
+                                    <a href="{{ url('product', $product->id) }}"><img src="{{ url(asset('assets/img/default_mini.jpg')) }}" alt="image_laravel"/></a>
+                                </div>
                             @endif
+
+
                         </td>
 
                         <td>

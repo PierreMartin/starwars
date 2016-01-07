@@ -14,7 +14,7 @@
                     @if($product->image)
                         <a href="{{ url('product', $product->id) }}"><img src="{{ url(asset('uploads/preview/'.$product->image->uri_preview)) }}" alt="image_laravel"/></a>
                     @else
-                        <a href="{{ url('product', $product->id) }}"><img src="http://lorempixel.com/440/300/?40547" alt="image_laravel"/></a>
+                        <a href="{{ url('product', $product->id) }}"><img src="{{ url(asset('assets/img/default_preview.jpg')) }}" alt="image_laravel"/></a>
                     @endif
                 </section>
 

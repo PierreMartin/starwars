@@ -7,6 +7,7 @@
     <link href="{{ asset('assets/css/bootstrap_dark.min.css') }}" rel="stylesheet" type="text/css">
     <link href="{{ asset('assets/css/front.min.css') }}" rel="stylesheet" type="text/css">
     <link href="{{ asset('assets/css/main.min.css') }}" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
 </head>
 
 <body>
@@ -31,7 +32,13 @@
 
                 <ul class="nav navbar-nav navbar-right">
                     @if(!Auth::check())
-                        <li><a href="{{ url('/bag') }}">Mon panier</a></li>
+                        <li><a href="{{ url('/bag') }}">
+                                @if (Session::has('key'))
+                                    <i class="fa fa-cart-arrow-down"></i>
+                                @endif
+                                Mon panier
+                            </a>
+                        </li>
                         <li><a href="{{ url('/auth/login') }}">Se connecter (administrateur)</a></li>
                         <li><a href="{{ url('/auth/register') }}">S'inscire</a></li>
                     @else

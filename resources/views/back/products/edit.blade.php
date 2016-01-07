@@ -56,7 +56,7 @@
             </div>
             <div class="col-sm-6">
                 <div class="form-group {{ $errors->has('category_id')? 'has-error' : '' }}">
-                    {!! Form::label('category_id', 'Catégories associés') !!}
+                    {!! Form::label('category_id', 'Catégorie associée') !!}
                     {!! Form::select('category_id', $categories, $product->category_id, ['class' => 'form-control']) !!}
                     {!! $errors->first('category_id', '<span class="help-block">:message</span>') !!}
                 </div>

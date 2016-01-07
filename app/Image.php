@@ -11,7 +11,7 @@ class Image extends Model
      *
      * @var array
      */
-    protected $fillable = ['name', 'uri', 'status', 'published_at'];
+    protected $fillable = ['name', 'uri', 'uri_preview', 'uri_mini', 'status', 'published_at'];
 
     // RELATION Products <-> Image :
     public function products()
