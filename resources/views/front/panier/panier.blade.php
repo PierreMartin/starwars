@@ -3,7 +3,7 @@
 @section('content')
     <h1>Mon panier</h1>
 
-    @if(isset($paniers) || isset($total_order) || count($paniers) !== 0)
+    @if(isset($paniers) || isset($total_order))
         <div class="well">
             <table class="table table-striped table-hover" style="border: #fff 1px solid;">
                 <thead>

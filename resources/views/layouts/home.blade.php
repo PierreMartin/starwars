@@ -38,7 +38,7 @@
                 <ul class="nav navbar-nav navbar-right">
                     @if(!Auth::check())
                         <li><a href="{{ url('/bag') }}">
-                                @if (Session::has('key'))
+                                @if (Session::has('panier'))
                                     <i class="fa fa-cart-arrow-down"></i>
                                 @endif
                                 Mon panier

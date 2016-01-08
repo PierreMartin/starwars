@@ -6,3 +6,6 @@ Homestead.json
 .idea
 .DS_Store
 .sass-cache
+/public/uploads/main/**
+/public/uploads/mini/**
+/public/uploads/preview/**

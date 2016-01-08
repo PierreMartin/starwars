@@ -56,7 +56,6 @@ class BagController extends Controller
             }
         }
 
-        //dd($panier);
         return view('front.panier.panier', compact('paniers', 'total_order', 'total_products'));
     }
 
@@ -133,6 +132,10 @@ class BagController extends Controller
         unset($panier[$key]);
 
         Session::put('panier', $panier);
+
+        if ($panier == null) {
+            Session::forget('panier');
+        }
 
         return redirect()->back()->with('message', 'Le produit a bien été suprimé');
     }
