@@ -24,11 +24,12 @@ Route::get('/categorie/{id}',   'FrontController@showProductByCategory');
 Route::get('/tag/{id}',         'FrontController@showProductByTag');
 
 //////////////////////// COTER PUBLIC : PANIER ////////////////////////
-Route::get('/bag',          'BagController@bagShow');               // view page panier
-Route::get('/bag-confirm',  'BagController@bagConfirm');            // view page panier validation
-Route::post('/bag-add',     'BagController@bagAddBySession')->name('bag-add');
-Route::get('/bag-delete',   'BagController@bagDelete')->name('bag-delete');     // delete 1 Item From The Session
-Route::post('/bag-store',   'BagController@bagStore')->name('bag-store');       // save in db
+Route::get('/bag',                  'BagController@bagShow');               // view page panier
+Route::get('/bag-confirm',          'BagController@bagConfirm');            // view page panier validation
+Route::post('/bag-add',             'BagController@bagAddBySession')->name('bag-add');
+Route::get('/product-delete/{key}', 'BagController@productDelete')->name('product-delete');     // delete 1 Item From The Session
+Route::get('/bag-delete',           'BagController@bagDelete')->name('bag-delete');             // delete all The Session
+Route::post('/bag-store',           'BagController@bagStore')->name('bag-store');               // save in db
 
 //////////////////////// COTER BACK : ////////////////////////
 Route::group(['prefix' => 'admin'], function () {

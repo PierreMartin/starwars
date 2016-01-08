@@ -3,7 +3,7 @@
 @section('content')
     <h1>Mon panier - confirmation</h1>
 
-    @if(isset($total_order))
+    @if(isset($paniers) || isset($total_order))
         <div class="well">
             <h4><strong>Total à payer : {{ $total_order }} €</strong></h4>
         </div>

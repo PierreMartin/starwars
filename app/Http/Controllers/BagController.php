@@ -25,21 +25,16 @@ class BagController extends Controller
     {
         $product_id = Input::get('product_id');     // id du produit récupéré au click au moment d'ajouter un produit
         $quantity   = Input::get('quantity');
+        $product    = Product::where('id', $product_id)->firstOrFail();
 
-        Session::push("key.product_id", $product_id);
-        Session::push("key.product_nb", $quantity +1);
-
-        /////// je pense qu'il faudrait faire un "put" dans un foreach pour la gestion des supression des item ///////
-        /*
-        $products = Product::where('id', $product_id)->firstOrFail();
-        foreach ($products as $product) {
-            Session::put('bag.products.'.$product_id, [
-                //"title"     => $product->title,
-                "quantite"  => $quantity+1,
-                //"prix"      => $product->prix
-            ]);
-        }
-        */
+        Session::push('panier', [
+                "quantity"      => $quantity,
+                "product_id"    => $product_id,
+                "title"         => $product->title,
+                "image"         => isset($product->image->uri_mini) ? $product->image->uri_mini : '',
+                "price"         => $product->price,
+                "priceTotalByProduct" => $quantity * $product->price,
+        ]);
 
         return redirect()->back()->with('message', 'Produit ajouté au panier');
     }
@@ -49,23 +44,20 @@ class BagController extends Controller
      */
     public function bagShow()
     {
-        if (Session::has('key')) {
-            $bag_ids        = Session::get("key.product_id");   // contient plusieurs id
-            $bag_nbs        = Session::get("key.product_nb");   // contient les quantites
-            $tab_product    = [];                               // on stock les produits
-            $tab_quantity   = [];                               // on stock les quantités
-            $total_order    = 0;
-            foreach ($bag_ids as $key => $idProduct) {
-                $quantity       = $bag_nbs[$key];
-                $product        = Product::where('id', $idProduct)->firstOrFail();
-                $total_order    = $total_order + $product->price * $quantity;
-                //echo $idProduct." -- ".$quantity."<br>";
-                array_push($tab_product, $product);
-                array_push($tab_quantity, $quantity);
+        if (Session::has('panier')) {
+            $paniers = Session::get("panier");
+            $total_order        = 0;
+            $total_products     = 0;
+            foreach ($paniers as $panier) {
+                $price          = $panier["price"];
+                $quantity       = $panier["quantity"];
+                $total_order    = $total_order + ($price * $quantity);
+                $total_products++;
             }
         }
 
-        return view('front.panier.panier', compact('tab_product', 'tab_quantity', 'total_order'));
+        //dd($panier);
+        return view('front.panier.panier', compact('paniers', 'total_order', 'total_products'));
     }
 
     /**
@@ -73,23 +65,17 @@ class BagController extends Controller
      */
     public function bagConfirm()
     {
-        if (Session::has('key')) {
-            $bag_ids        = Session::get("key.product_id");   // contient plusieurs id
-            $bag_nbs        = Session::get("key.product_nb");   // contient les quantités
-            $tab_product    = [];                               // on stock les produits
-            $tab_quantity   = [];                               // on stock les quantités
-            $total_order    = 0;
-            foreach ($bag_ids as $key => $idProduct) {
-                $quantity       = $bag_nbs[$key];
-                $product        = Product::where('id', $idProduct)->firstOrFail();
-                $total_order    = $total_order + $product->price * $quantity;
-                //echo $idProduct." -- ".$quantity."<br>";
-                array_push($tab_product, $product);
-                array_push($tab_quantity, $quantity);
+        if (Session::has('panier')) {
+            $paniers = Session::get("panier");
+            $total_order        = 0;
+            foreach ($paniers as $panier) {
+                $price          = $panier["price"];
+                $quantity       = $panier["quantity"];
+                $total_order    = $total_order + ($price * $quantity);
             }
         }
 
-        return view('front.panier.panier_confirm', compact('tab_product', 'tab_quantity', 'total_order'));
+        return view('front.panier.panier_confirm', compact('paniers', 'total_order'));
     }
 
     /**
@@ -110,29 +96,26 @@ class BagController extends Controller
             $order = Order::create($request->all());
 
             // id du client :
-            $customer_id = $customer->id;
+            $customer_id        = $customer->id;
             $order->customer_id = $customer_id;
-
-            // On va associer LA commande aux produits :
-            $bag_ids = Session::get("key.product_id"); // contient l'id des produits
-            $bag_nbs = Session::get("key.product_nb"); // contient la quantité des produits
-
             $order->save();
 
+            // On va associer LA commande aux produits en bdd :
+            $paniers = Session::get("panier");
+
             $newItems = [];
-            foreach ($bag_ids as $key => $idProduct) {
-                $quantity   = $bag_nbs[$key];
+            foreach ($paniers as $panier) {
                 $newItems[] = [
                     'order_id'      => $order->id,
-                    'product_id'    => $idProduct,
-                    'quantity'      => $quantity
+                    'product_id'    => $panier["product_id"],
+                    'quantity'      => $panier["quantity"]
                 ];
             }
 
             DB::table('order_product')->insert($newItems);
 
             // on vide le panier :
-            Session::flush();
+            Session::forget('panier');
 
             return redirect(url('/'))->with('message', 'Votre commande à bien été pris en compte !');
         } else {
@@ -144,11 +127,24 @@ class BagController extends Controller
     /**
      * @return \Illuminate\Http\RedirectResponse
      */
+    public function productDelete($key)
+    {
+        $panier = Session::get("panier");
+        unset($panier[$key]);
+
+        Session::put('panier', $panier);
+
+        return redirect()->back()->with('message', 'Le produit a bien été suprimé');
+    }
+
+    /**
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function bagDelete()
     {
-        Session::forget("key");
+        Session::forget('panier');
 
-        return redirect()->back()->with('message', 'Le produit à bien été suprimé');
+        return redirect()->back()->with('message', 'Le panier a bien été vidé');
     }
 
 }

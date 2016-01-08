@@ -28,7 +28,7 @@
                             {!! Form::open(['url' => route('bag-add'), 'method' => 'POST']) !!}
                             <div class="form-group {{ $errors->has('quantity')? 'has-error' : '' }}">
                                 {!! Form::label('quantity', 'Quantitée :') !!}
-                                {!! Form::select('quantity', [1, 2, 3, 4, 5], 0, ['class' => 'form-control']) !!}
+                                {!! Form::select('quantity', ["1" => 1, "2" => 2, "3" => 3, "4" => 4, "5" => 5], 0, ['class' => 'form-control']) !!}
                                 {!! $errors->first('quantity', '<span class="help-block">:message</span>') !!}
 
                                 {!! Form::hidden('product_id', $product->id) !!}

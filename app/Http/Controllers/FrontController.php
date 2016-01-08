@@ -46,7 +46,7 @@ class FrontController extends Controller
      */
     public function showProductByCategory($id)
     {
-        $products = Product::whereRaw("category_id = $id and status = true")->orderBy('published_at', 'desc')->paginate(10);
+        $products = Product::whereRaw("category_id = $id and status = true")->orderBy('published_at', 'desc')->with('category', 'tags', 'image')->paginate(10);
 
         if ($id == 1) {
             $cat_product = "sabres lasers";

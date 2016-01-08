@@ -3,7 +3,7 @@
 @section('content')
     <h1>Mon panier</h1>
 
-    @if(isset($tab_product) || isset($tab_quantity) || isset($total_order) )
+    @if(isset($paniers) || isset($total_order) || count($paniers) !== 0)
         <div class="well">
             <table class="table table-striped table-hover" style="border: #fff 1px solid;">
                 <thead>
@@ -13,39 +13,42 @@
                     <th>Quantité</th>
                     <th>Prix unitaire</th>
                     <th>Prix total par produit</th>
+                    <th>Supprimer</th>
                 </tr>
                 </thead>
                 <tbody>
-                @foreach($tab_product as $key => $product)
+                @foreach($paniers as $key => $panier)
                     <tr>
                         <td>
-                            @if($product->image)
+                            @if($panier["image"])
                                 <div class="content_imagemini">
-                                    <a href="{{ url('product', $product->id) }}"><img src="{{ url(asset('uploads/mini/'.$product->image->uri_mini)) }}" alt="image_laravel" width="100" /></a>
+                                    <a href="{{ url('product', $panier["product_id"]) }}"><img src="{{ url(asset('uploads/mini/'.$panier["image"])) }}" alt="image_laravel" width="100" /></a>
                                 </div>
                             @else
                                 <div class="content_imagemini">
-                                    <a href="{{ url('product', $product->id) }}"><img src="{{ url(asset('assets/img/default_mini.jpg')) }}" alt="image_laravel"/></a>
+                                    <a href="{{ url('product', $panier["product_id"]) }}"><img src="{{ url(asset('assets/img/default_mini.jpg')) }}" alt="image_laravel"/></a>
                                 </div>
                             @endif
-
-
                         </td>
 
                         <td>
-                            <h4><a href="{{ url('product', $product->id) }}">{{ $product->title }}</a></h4>
+                            <h4><a href="{{ url('product', $panier["product_id"]) }}">{{ $panier["title"] }}</a></h4>
                         </td>
 
                         <td>
-                            <p>{{ $tab_quantity[$key] }}</p>
+                            <p>{{ $panier["quantity"] }}</p>
                         </td>
 
                         <td>
-                            <p><bold>{{ $product->price }} €</bold></p>
+                            <p><bold>{{ $panier["price"] }} €</bold></p>
                         </td>
 
                         <td>
-                            <p><bold>{{ $price_by_product = $product->price * $tab_quantity[$key] }} €</bold></p>
+                            <p><bold>{{ $panier["priceTotalByProduct"] }} €</bold></p>
+                        </td>
+
+                        <td>
+                            <a class="btn btn-warning" href="{{ route('product-delete', $key) }}">Supprimer le produit</a>
                         </td>
                     </tr>
                 @endforeach
@@ -62,7 +65,7 @@
                 <tbody>
                 <tr>
                     <td>
-                        <p><strong>{{ count($tab_quantity) }}</strong></p>
+                        <p><strong>{{ $total_products }}</strong></p>
                     </td>
                     <td>
                         <p><strong>{{ $total_order }} €</strong></p>
