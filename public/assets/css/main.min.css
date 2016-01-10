@@ -1,10 +1,2 @@
-.has-error .form-control {
-  border: 1px solid #ff0039;
-}
-
-blockquote {
-  border: none !important;
-  margin: 25px 0 0 0;
-}
-
+.has-error .form-control{border:1px solid #ff0039}blockquote{border:none !important;margin:25px 0 0 0}
 /*# sourceMappingURL=main.min.css.map */

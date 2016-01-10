@@ -12,10 +12,10 @@ class LoginCustomerFormRequest extends Request
     public function messages()
     {
         return [
-            'in'                => 'Ce champs dois etre du type: :values',
-            'required'          => 'Ce champs est obligatoire',
-            'max'               => 'Ce champs ne dois pas dépasser 255 caractere',
-            'email'             => 'Ce champs dois être un email',
+            'in'                => 'Ce champ doit être du type: :values',
+            'required'          => 'Ce champ est obligatoire',
+            'max'               => 'Ce champ ne doit pas dépasser 255 caractères',
+            'email'             => 'Ce champ doit être un email',
         ];
     }
 

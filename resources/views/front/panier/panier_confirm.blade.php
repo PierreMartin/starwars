@@ -13,12 +13,12 @@
 
             {!! Form::open(['url' => route('bag-store'), 'method' => 'POST']) !!}
                 <div class="form-group {{ $errors->has('customer_name')? 'has-error' : '' }}">
-                    {!! Form::label('customer_name', 'nom d\'utilisateur') !!}
+                    {!! Form::label('customer_name', 'Nom d\'utilisateur') !!}
                     {!! Form::text('customer_name', null, ['class' => 'form-control']) !!}
                     {!! $errors->first('customer_name', '<span class="help-block">:message</span>') !!}
                 </div>
                 <div class="form-group {{ $errors->has('customer_email')? 'has-error' : '' }}">
-                    {!! Form::label('customer_email', 'email') !!}
+                    {!! Form::label('customer_email', 'Email') !!}
                     {!! Form::text('customer_email', null, ['class' => 'form-control']) !!}
                     {!! $errors->first('customer_email', '<span class="help-block">:message</span>') !!}
                 </div>

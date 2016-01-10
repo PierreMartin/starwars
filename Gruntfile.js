@@ -53,7 +53,7 @@ module.exports = function(grunt) {
         sass: {
             options: {
                 compass: true,
-                style: 'expanded'
+                style: 'compressed'
             },
             backo_css: {
                 files: {'public/assets/css/backo.min.css': ['resources/assets/sass/backo.scss']}

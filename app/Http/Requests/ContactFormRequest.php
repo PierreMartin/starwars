@@ -12,10 +12,10 @@ class ContactFormRequest extends Request
     public function messages()
     {
         return [
-            'in'                => 'Ce champs dois être du type: :values',
-            'email'             => 'Ce champs dois être un email',
-            'required'          => 'Ce champs est obligatoire',
-            'max'               => 'Ce champs ne dois pas dépasser 255 caractere',
+            'in'                => 'Ce champ doit être du type: :values',
+            'email'             => 'Ce champ doit être un email',
+            'required'          => 'Ce champ est obligatoire',
+            'max'               => 'Ce champ ne doit pas dépasser 255 caractères',
         ];
     }
 

@@ -12,13 +12,13 @@ class ProductFormRequest extends Request
     public function messages()
     {
         return [
-            'in'                => 'Ce champs dois etre du type: :values',
-            'required'          => 'Ce champs est obligatoire',
-            'max'               => 'Ce champs ne dois pas dépasser 255 caractere',
+            'in'                => 'Ce champ doit être du type: :values',
+            'required'          => 'Ce champ est obligatoire',
+            'max'               => 'Ce champ ne doit pas dépasser 255 caractere',
             'size'              => 'Taille de l\'image trop grosse',
             'image'             => 'Seul les formats jpg, png, et gif sont autorisés',
-            'date'              => 'Ce champs dois être une date (15-10-2015)',
-            'between'           => 'Le prix dois être supérieur à :min et inférieur à :max €'
+            'date'              => 'Ce champ doit être une date (15-10-2015)',
+            'between'           => 'Le prix doit être supérieur à :min et inférieur à :max €'
         ];
     }
 

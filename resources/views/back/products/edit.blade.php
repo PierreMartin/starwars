@@ -7,13 +7,13 @@
         {!! Form::open(['method' => 'put', 'url' => route('admin.products.update', $product), 'files' => true ]) !!}
 
         <div class="form-group {{ $errors->has('title')? 'has-error' : '' }}">
-            {!! Form::label('title', 'Titre de l\'article') !!}
+            {!! Form::label('title', 'Nom du produit') !!}
             {!! Form::text('title', $product->title, ['class' => 'form-control']) !!}
             {!! $errors->first('title', '<span class="help-block">:message</span>') !!}
         </div>
 
         <div class="form-group {{ $errors->has('content')? 'has-error' : '' }}">
-            {!! Form::label('content', 'Content') !!}
+            {!! Form::label('content', 'Description') !!}
             {!! Form::textarea('content', $product->content, ['class' => 'form-control']) !!}
             {!! $errors->first('content', '<span class="help-block">:message</span>') !!}
         </div>

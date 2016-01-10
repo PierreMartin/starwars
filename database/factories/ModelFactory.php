@@ -32,12 +32,12 @@ $factory->define(App\Image::class, function (Faker\Generator $faker) {
     ];
 });
 
-$factory->define(App\Category::class, function (Faker\Generator $faker) {
+/*$factory->define(App\Category::class, function (Faker\Generator $faker) {
     return [
         'title'          => $faker->word(1),
         'description'    => $faker->paragraph(1)
     ];
-});
+});*/
 
 $factory->define(App\Product::class, function (Faker\Generator $faker) {
     return [

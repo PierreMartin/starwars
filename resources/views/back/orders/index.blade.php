@@ -2,7 +2,7 @@
 
 @section('content')
     <h2>Historique des commandes</h2>
-    <a href="{{ url('/admin/unpaid') }}">Voir les commandes non payés</a>
+    <a href="{{ url('/admin/unpaid') }}">Voir les commandes non payées</a>
     <br>
 
     <div class="pagination">
@@ -13,10 +13,10 @@
         <thead>
         <tr class="info">
             <th>Date</th>
-            <th>Clients</th>
-            <th>Produits commandés</th>
+            <th>Client</th>
+            <th>Produit(s) commandés</th>
             <th>Prix total</th>
-            <th>Status de la commande</th>
+            <th>Statut de la commande</th>
         </tr>
         </thead>
         <tbody>
