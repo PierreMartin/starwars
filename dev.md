@@ -83,20 +83,6 @@ solution =>
 
 
 ########################################################################################
-# Documentation pour l'installation et le déploiement du projet :
-
-$ cd myFolderProject
-
-Créer une base de donnée puis définir la connection à celle-ci dans .env
-
-Lancer les serveurs :
-    $ php artisan serve
-    -> lancer MAMP ou XAMP pour le SQL
-
-Installer les dépendances :
-    $ composer install
-    $ npm install
-
     Dépendances installés via Composer :
         - laravel-debugbar
         - illuminate/html
@@ -109,30 +95,9 @@ Installer les dépendances :
         - jquery-ui
         - jquery.easing
 
-Creer les tables dans la base de donnée et du "faux" contenu :
+
     $ php artisan migrate
     $ php artisan db:seed
-
-Pour lancer Grunt :
-    $ grunt
-    $ grunt watch
-
-Pour lancer le serveur devmail :
-    $ maildev
-    -> http://localhost:1080/
-    pour tester Akismet, ecrire dans le champ "message" de la page contact les mots suivant : viagra-test-123
-
-Pour créer/modifier des produits :
-    J'ai préparé 10 images (5 pour chaque catégorie) qui se trouvent dans myFolderStarwars/public/assets/img
-
-
-NAGIVATION :
-    Pour se connecter en tant qu'administrateur :
-    email    : pierre@gmail.com
-    password : 1111
-
-    Pour se connecter en tant que client et valider une commande :
-        reprendre le nom et l'email d'un client dans la table 'customers'
 
 
 ######################################## Silde ################################################

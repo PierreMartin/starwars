@@ -1,10 +1,12 @@
-## E-Star-Wars
+# E-StarWars
 
-clone 'https://github.com/PierreMartin/starwars.git'
+## Installation
 
-create .env file (rename '.env.example' to '.env')
+clone
 
-In .env, remplace by:
+      https://github.com/PierreMartin/starwars.git
+
+create .env file (or rename '.env.example' to '.env') and remplace by (you can change by your DB_DATABASE, DB_USERNAME...):
 
       APP_ENV=local
       APP_DEBUG=true
@@ -31,14 +33,47 @@ In .env, remplace by:
       KEY_AKISMET=8edaaafa2377
       URL_AKISMET=http://localhost:8000
 
+
 Run commande line :
 
     $ sudo chmod +x install.sh
     $ ./install.sh
-    $ sh install.sh
 
 In database => table categories, change the two random title by 'Lasers' and 'Casques'
 
-Run
 
-      php artisan serve
+## Naviagtion :
+
+      $ php artisan serve
+
+      http://localhost:8000/
+
+      Don't forget to run your server sql
+
+To log as an administrator:
+
+      - email    : pierre@gmail.com
+      - password : 1111
+
+
+To log as a customer and submit an order:
+
+      the better is take a name with email of a client in table 'customers'
+
+
+For to test maildev :
+
+      $ maildev
+
+      localhost:1080/#/
+
+For test Akismet :
+      try to send `viagra-test-123` in field `Votre message` from the contact `page`
+
+
+For add new image from admin, I have prepared 10 images in `/public/assets/img`
+
+
+For change css or js :
+
+      $ grunt watch
