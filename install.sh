@@ -25,31 +25,32 @@ EOF
 echo $MySQL | mysql --user=$USERNAME --password=$PASSWORD
 
 #install Grunt
-echo -n "Do you wish to install grunt program in global? (y/n)"
+echo "Do you wish to install Grunt program in global? (y/n) : \c"
 read answer
-
-if [ ! -d "./node_modules/" ] && [ $answer="y" ]; then
+if [ "$answer" = "Y" ] || [ "$answer" = "y" ]
+then
     sudo npm install grunt -g
 fi
 
 #install Sass
-echo -n "Do you wish to install Sass program in global? (require Ruby before) (y/n)"
+echo "Do you wish to install Sass program in global? (require Ruby before) (y/n) : \c"
 read answer
-
-if [ $answer="y" ]; then
+if [ "$answer" = "Y" ] || [ "$answer" = "y" ]
+then
     sudo gem install sass
 fi
 
-
-sudo npm install
-
 #install Maildev
-echo -n "Do you wish to install MailDev program in global? (y/n)"
+echo "Do you wish to install MailDev program in global? (y/n) : \c"
 read answer
-
-if [ $answer="y" ]; then
+if [ "$answer" = "Y" ] || [ "$answer" = "y" ]
+then
     sudo npm install -g maildev
 fi
+
+#Install dependencies node
+echo "Install dependencies node"
+sudo npm install
 
 #create tables
 echo "Create tables"
