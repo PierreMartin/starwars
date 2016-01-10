@@ -1,6 +1,6 @@
 # E-StarWars
 
-## Installation
+## Installation (Laravel 5.1)
 
 clone
 
@@ -30,7 +30,7 @@ create .env file (or rename '.env.example' to '.env') and remplace by (you can c
       MAIL_ACCESS=youremail@gmail.com
       MAIL_NAM=pierre
 
-      KEY_AKISMET=8edaaafa2377
+      KEY_AKISMET=your_key
       URL_AKISMET=http://localhost:8000
 
 
@@ -41,8 +41,20 @@ Run commande line :
 
 In database => table categories, change the two random title by 'Lasers' and 'Casques'
 
+## Redirect auth :
+After the installation of dependencies, in:
+`projectFolder/vendor/laravel/framework/src/Illuminate/Foundation/Auth/RedirectsUsers.php`
 
-## Naviagtion :
+change :
+
+
+      return property_exists($this, 'redirectTo') ? $this->redirectTo : '/home';
+
+to
+
+      return property_exists($this, 'redirectTo') ? $this->redirectTo : '/admin/products';
+
+## Navigation :
 
       $ php artisan serve
 
